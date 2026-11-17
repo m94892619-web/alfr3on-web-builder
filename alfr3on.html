@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة الإدارة | ALFR3ON</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Cairo,sans-serif;background:#090909;color:white}
+header{background:#111;padding:17px 6%;border-bottom:1px solid #292929;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{color:#ed1830;font-size:20px;font-weight:900}
+header a{color:#aaa;text-decoration:none;font-size:13px}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 65px)}
+aside{background:#111;border-left:1px solid #292929;padding:22px 14px}
+.admin-name{text-align:center;padding:15px 5px 25px;border-bottom:1px solid #292929;margin-bottom:20px}
+.admin-name strong{display:block;color:#ed1830;font-size:19px}
+.admin-name span{font-size:12px;color:#888}
+.menu button{width:100%;background:transparent;color:#bbb;text-align:right;padding:12px;border:0;border-radius:8px;font-family:inherit;cursor:pointer;margin-bottom:5px}
+.menu button.active,.menu button:hover{background:#321016;color:#ff5264}
+main{padding:28px 5%;min-width:0}
+.page-title{font-size:25px;margin-bottom:7px}
+.description{font-size:13px;color:#888;margin-bottom:25px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:15px;margin-bottom:25px}
+.stat{background:#151515;border:1px solid #292929;border-radius:13px;padding:19px}
+.stat span{display:block;color:#999;font-size:12px}
+.stat strong{display:block;color:#ed1830;font-size:28px;margin-top:8px}
+.panel{background:#141414;border:1px solid #292929;border-radius:13px;padding:20px;margin-bottom:20px}
+.panel h3{font-size:17px;margin-bottom:15px}
+table{width:100%;border-collapse:collapse;min-width:480px}
+th,td{padding:13px;text-align:right;border-bottom:1px solid #292929;font-size:12px}
+th{color:#ed1830}
+.table-wrap{overflow-x:auto}
+.status{color:#e8b75b}
+.notice{background:#321016;border:1px solid #70202d;color:#ff9ba5;padding:13px;border-radius:9px;font-size:12px;line-height:1.8;margin-bottom:20px}
+.setting{padding:12px 0;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px}
+.setting:last-child{border:0}
+.value{color:#aaa}
+.section{display:none}
+.section.active{display:block}
+.mobile-menu{display:none}
+@media(max-width:700px){
+.layout{grid-template-columns:1fr}
+aside{border-left:0;border-bottom:1px solid #292929;padding:10px}
+.admin-name{display:none}
+.menu{display:flex;overflow-x:auto;gap:5px}
+.menu button{white-space:nowrap;width:auto;margin:0}
+main{padding:22px 4%}
+.mobile-menu{display:block}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">ALFR3ON ADMIN</div>
+<a href="index.html">العودة للموقع</a>
+</header>
+
+<div class="layout">
+
+<aside>
+<div class="admin-name">
+<strong>الفرعون</strong>
+<span>مدير المنصة</span>
+</div>
+
+<div class="menu">
+<button class="active" data-section="overview">الرئيسية</button>
+<button data-section="users">المستخدمون</button>
+<button data-section="projects">المشاريع</button>
+<button data-section="settings">الإعدادات</button>
+<button data-section="system">حالة النظام</button>
+</div>
+</aside>
+
+<main>
+
+<section class="section active" id="overview">
+<h1 class="page-title">لوحة التحكم</h1>
+<p class="description">مرحبًا بك في إدارة ALFR3ON WEB BUILDER</p>
+
+<div class="notice">
+هذه لوحة واجهة تجريبية. لا يوجد حاليًا نظام دخول إداري أو قاعدة بيانات متصلة، لذلك الأرقام المعروضة ليست إحصائيات حقيقية.
+</div>
+
+<div class="stats">
+<div class="stat"><span>إجمالي المستخدمين</span><strong>0</strong></div>
+<div class="stat"><span>إجمالي المشاريع</span><strong>0</strong></div>
+<div class="stat"><span>المشاريع المنشورة</span><strong>0</strong></div>
+<div class="stat"><span>حالة المنصة</span><strong style="font-size:19px">تجريبية</strong></div>
+</div>
+
+<div class="panel">
+<h3>معلومات المنصة</h3>
+<div class="setting"><span>اسم المنصة</span><span class="value">ALFR3ON WEB BUILDER</span></div>
+<div class="setting"><span>الشركة</span><span class="value">ALFR3ON DEZAINER</span></div>
+<div class="setting"><span>المدير</span><span class="value">الفرعون</span></div>
+<div class="setting"><span>التصميم</span><span class="value">أسود / أحمر / فضي</span></div>
+</div>
+</section>
+
+<section class="section" id="users">
+<h1 class="page-title">إدارة المستخدمين</h1>
+<p class="description">متابعة حسابات المستخدمين وحالة عضويتهم</p>
+<div class="panel">
+<h3>قائمة المستخدمين</h3>
+<p style="color:#999;font-size:13px">لا توجد بيانات مستخدمين متصلة حاليًا. ستظهر الحسابات بعد ربط قاعدة البيانات ونظام التسجيل.</p>
+</div>
+</section>
+
+<section class="section" id="projects">
+<h1 class="page-title">إدارة المشاريع</h1>
+<p class="description">متابعة جميع المشاريع التي يتم إنشاؤها على المنصة</p>
+<div class="panel">
+<h3>المشاريع المسجلة</h3>
+<p style="color:#999;font-size:13px">لا توجد قاعدة بيانات للمشاريع متصلة بلوحة الإدارة حتى الآن.</p>
+</div>
+</section>
+
+<section class="section" id="settings">
+<h1 class="page-title">إعدادات المنصة</h1>
+<p class="description">معلومات وإعدادات الواجهة</p>
+<div class="panel">
+<h3>الإعدادات العامة</h3>
+<div class="setting"><span>اسم المنصة</span><span class="value">ALFR3ON WEB BUILDER</span></div>
+<div class="setting"><span>العلامة المائية</span><span class="value">ALFR3ON DEZAINER</span></div>
+<div class="setting"><span>اللغة الأساسية</span><span class="value">العربية</span></div>
+<div class="setting"><span>الألوان الأساسية</span><span class="value">الأسود والأحمر والفضي</span></div>
+</div>
+</section>
+
+<section class="section" id="system">
+<h1 class="page-title">حالة النظام</h1>
+<p class="description">معلومات عن المكونات التي تم تجهيزها</p>
+<div class="panel">
+<h3>مكونات المنصة</h3>
+<div class="setting"><span>واجهة الصفحة الرئيسية</span><span class="status">ملف مبدئي</span></div>
+<div class="setting"><span>واجهة إنشاء المواقع</span><span class="status">تجريبية</span></div>
+<div class="setting"><span>معرض القوالب</span><span class="status">تجريبي</span></div>
+<div class="setting"><span>مكتبة الأوصاف</span><span class="status">تجريبية</span></div>
+<div class="setting"><span>لوحة المشاريع</span><span class="status">محلية فقط</span></div>
+<div class="setting"><span>نظام الحسابات</span><span class="status">غير مربوط</span></div>
+<div class="setting"><span>قاعدة البيانات</span><span class="status">غير مربوطة</span></div>
+<div class="setting"><span>محرك الذكاء الاصطناعي</span><span class="status">غير مربوط</span></div>
+</div>
+</section>
+
+</main>
+</div>
+
+<script>
+const buttons=document.querySelectorAll(".menu button");
+const sections=document.querySelectorAll(".section");
+
+buttons.forEach(button=>{
+button.addEventListener("click",()=>{
+buttons.forEach(b=>b.classList.remove("active"));
+sections.forEach(s=>s.classList.remove("active"));
+button.classList.add("active");
+document.getElementById(button.dataset.section).classList.add("active");
+});
+});
+</script>
+
+</body>
+</html>
