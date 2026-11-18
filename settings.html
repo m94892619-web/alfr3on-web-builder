@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALFR3ON - Settings</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+padding:20px;
+background:#080808;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.container{
+max-width:750px;
+margin:auto;
+}
+
+header{
+text-align:center;
+padding:25px;
+}
+
+header h1{
+color:#c0c0c0;
+}
+
+.section{
+background:#151515;
+border:1px solid #333;
+border-radius:14px;
+padding:20px;
+margin:18px 0;
+}
+
+.section h3{
+color:#c0c0c0;
+margin-top:0;
+}
+
+label{
+display:block;
+margin:15px 0 8px;
+color:#ccc;
+}
+
+input,select{
+width:100%;
+padding:13px;
+background:#080808;
+color:white;
+border:1px solid #555;
+border-radius:8px;
+}
+
+button{
+background:linear-gradient(135deg,#fff,#bbb,#777);
+color:#080808;
+border:1px solid white;
+padding:13px 22px;
+border-radius:9px;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+filter:brightness(1.15);
+}
+
+.status{
+color:#aaa;
+margin-top:15px;
+font-size:13px;
+}
+
+.footer{
+text-align:center;
+color:#666;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>ALFR3ON</h1>
+<h2>إعدادات الحساب</h2>
+<p>تحكم في إعدادات منصتك</p>
+</header>
+
+<div class="section">
+<h3>الملف الشخصي</h3>
+
+<label>اسم المستخدم</label>
+<input id="username" placeholder="اكتب اسم المستخدم">
+
+<label>البريد الإلكتروني</label>
+<input id="email" type="email" placeholder="البريد الإلكتروني">
+</div>
+
+<div class="section">
+<h3>إعدادات اللغة</h3>
+
+<label>لغة المنصة</label>
+<select id="language">
+<option value="ar">العربية</option>
+<option value="en">English</option>
+<option value="de">Deutsch</option>
+</select>
+</div>
+
+<div class="section">
+<h3>العلامة المائية</h3>
+
+<label>اسم العلامة المائية</label>
+<input id="watermark" value="ALFR3ON DEZAINER">
+
+<p class="status">
+إعداد تجريبي؛ لا تتم إضافته تلقائيًا إلى المواقع المنشأة.
+</p>
+</div>
+
+<div class="section">
+<h3>المظهر</h3>
+
+<label>لون الأزرار</label>
+<select id="buttonColor">
+<option value="silver">فضي</option>
+<option value="red">أحمر</option>
+</select>
+</div>
+
+<button onclick="saveSettings()">حفظ الإعدادات</button>
+
+<p class="status" id="status"></p>
+
+<div class="footer">
+ALFR3ON DEZAINER © 2026
+</div>
+
+</div>
+
+<script>
+function saveSettings(){
+
+const settings={
+username:document.getElementById("username").value,
+email:document.getElementById("email").value,
+language:document.getElementById("language").value,
+watermark:document.getElementById("watermark").value,
+buttonColor:document.getElementById("buttonColor").value
+};
+
+localStorage.setItem(
+"alfr3on_settings",
+JSON.stringify(settings)
+);
+
+document.getElementById("status").textContent=
+"تم حفظ الإعدادات محليًا على هذا الجهاز.";
+}
+
+window.onload=function(){
+
+const saved=localStorage.getItem("alfr3on_settings");
+
+if(saved){
+
+const s=JSON.parse(saved);
+
+document.getElementById("username").value=s.username||"";
+document.getElementById("email").value=s.email||"";
+document.getElementById("language").value=s.language||"ar";
+document.getElementById("watermark").value=s.watermark||"ALFR3ON DEZAINER";
+document.getElementById("buttonColor").value=s.buttonColor||"silver";
+
+}
+};
+</script>
+
+</body>
+</html>
