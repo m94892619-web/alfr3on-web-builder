@@ -10,9 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
 :root {
-  --red: #ff1025;
+  --red: #a60012;
   --dark: #050505;
-  --silver: #d9d9d9;
+  --silver: #c0c0c0;
+  --silver-light: #f2f2f2;
 }
 
 * {
@@ -21,9 +22,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--dark);
@@ -37,8 +36,8 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.35), rgba(0,0,0,.82)),
-    linear-gradient(0deg, #050505, transparent 60%),
+    linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.4),rgba(0,0,0,.88)),
+    linear-gradient(0deg,#050505,transparent 60%),
     url("wolf-bg.jpg") center 20% / cover no-repeat;
   z-index: -2;
   opacity: .85;
@@ -48,11 +47,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 35%,
-    transparent 5%,
-    rgba(0,0,0,.5) 75%
-  );
+  background: radial-gradient(circle at 50% 35%,transparent 5%,rgba(0,0,0,.5) 75%);
   z-index: -1;
   pointer-events: none;
 }
@@ -65,56 +60,78 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0,0,0,.88);
-  border-bottom: 2px solid var(--red);
-  box-shadow: 0 0 20px #ff102544;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: rgba(0,0,0,.94);
+  border-bottom: 2px solid var(--silver);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .logo {
-  color: var(--silver);
+  color: var(--silver-light);
   font-size: 25px;
   font-weight: 900;
-  text-shadow: 0 0 12px #fff4;
 }
 
-.logo span {
-  color: var(--red);
-}
+.logo span { color: var(--red); }
 
 nav {
   display: flex;
-  gap: 24px;
+  gap: 17px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   transition: .3s;
 }
 
-nav a:hover {
-  color: var(--red);
-}
+nav a:hover { color: var(--silver); }
 
 .login {
-  padding: 9px 18px;
-  border: 1px solid var(--red);
-  border-radius: 30px;
+  padding: 8px 16px;
+  border: 1px solid var(--silver);
+  border-radius: 25px;
+}
+
+/* BUTTONS */
+
+.btn {
+  display: inline-block;
+  padding: 13px 27px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #080808;
+  background: linear-gradient(135deg,#fff,#c0c0c0,#777);
+  border: 1px solid #eee;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px #c0c0c055;
+}
+
+.btn-secondary {
+  background: #111;
+  color: var(--silver-light);
+  border: 1px solid var(--silver);
 }
 
 /* HERO */
 
 .hero {
-  min-height: 650px;
+  min-height: 620px;
   display: flex;
   align-items: center;
   padding: 70px 8%;
-  position: relative;
 }
 
 .hero-content {
@@ -123,71 +140,45 @@ nav a:hover {
 }
 
 .tag {
-  color: var(--red);
-  border: 1px solid var(--red);
+  color: var(--silver);
+  border: 1px solid var(--silver);
   display: inline-block;
   padding: 5px 18px;
   border-radius: 30px;
   margin-bottom: 22px;
-  box-shadow: 0 0 12px #ff102544;
 }
 
 .hero h1 {
-  font-size: clamp(40px, 7vw, 75px);
-  line-height: 1.3;
+  font-size: clamp(40px,7vw,75px);
+  line-height: 1.4;
   font-weight: 900;
-  text-shadow: 0 0 20px #000;
 }
 
 .hero h1 span {
-  color: var(--red);
-  text-shadow: 0 0 20px #ff1025aa;
+  color: var(--silver);
+  text-shadow: 0 0 20px #c0c0c077;
 }
 
 .hero p {
   margin-top: 20px;
   color: #ddd;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 2;
 }
 
 .buttons {
   display: flex;
-  gap: 18px;
+  gap: 15px;
   flex-wrap: wrap;
   margin-top: 30px;
 }
 
-.btn {
-  padding: 13px 30px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  transition: .3s;
-}
-
-.btn-main {
-  background: linear-gradient(120deg, #a80012, #ff1025);
-  box-shadow: 0 0 22px #ff102577;
-}
-
-.btn-secondary {
-  border: 1px solid #ff1025;
-  background: #090909bb;
-}
-
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px #ff1025aa;
-}
-
-/* SECTION */
+/* SECTIONS */
 
 .section {
-  padding: 55px 6%;
+  padding: 60px 6%;
   text-align: center;
-  background: linear-gradient(180deg, transparent, #050505eF);
+  background: linear-gradient(180deg,transparent,#050505ee);
 }
 
 .section h2 {
@@ -195,49 +186,68 @@ nav a:hover {
   margin-bottom: 35px;
 }
 
-.section h2 span {
-  color: var(--red);
-}
+.section h2 span { color: var(--silver); }
 
 /* CARDS */
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 20px;
 }
 
 .card {
-  background: rgba(10,10,10,.85);
+  background: rgba(10,10,10,.9);
   border: 1px solid #555;
-  border-bottom: 3px solid var(--red);
-  padding: 30px 15px;
+  border-bottom: 3px solid var(--silver);
+  padding: 28px 15px;
   border-radius: 15px;
   transition: .4s;
   backdrop-filter: blur(10px);
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  border-color: var(--red);
-  box-shadow: 0 0 25px #ff102544;
+  transform: translateY(-8px);
+  border-color: var(--silver);
+  box-shadow: 0 0 20px #c0c0c033;
 }
 
-.card .symbol {
-  font-size: 42px;
-  color: var(--red);
-  text-shadow: 0 0 15px var(--red);
+.symbol {
+  font-size: 40px;
+  color: var(--silver);
 }
 
-.card h3 {
-  margin: 12px 0;
-  font-size: 19px;
-}
+.card h3 { margin: 12px 0; }
 
 .card p {
   color: #aaa;
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 1.9;
+}
+
+/* QUICK LINKS */
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 12px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.quick-links a {
+  padding: 15px;
+  color: var(--silver-light);
+  text-decoration: none;
+  background: #151515;
+  border: 1px solid #555;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.quick-links a:hover {
+  background: #292929;
+  border-color: var(--silver);
 }
 
 /* CTA */
@@ -245,104 +255,85 @@ nav a:hover {
 .cta {
   padding: 65px 20px;
   text-align: center;
-  background: linear-gradient(90deg, #150004, #050505, #150004);
-  border-top: 1px solid var(--red);
-  border-bottom: 1px solid var(--red);
+  background: linear-gradient(90deg,#150004,#050505,#150004);
+  border-top: 1px solid var(--silver);
+  border-bottom: 1px solid var(--silver);
 }
 
-.cta h2 {
-  font-size: 30px;
-}
+.cta h2 { font-size: 30px; }
 
 .cta p {
   color: #bbb;
-  margin: 15px 0;
+  margin: 15px 0 25px;
 }
 
 /* FOOTER */
 
 footer {
-  padding: 28px 15px;
+  padding: 30px 15px;
   background: #020202;
-  border-top: 2px solid var(--red);
+  border-top: 2px solid var(--silver);
   text-align: center;
   color: #aaa;
 }
 
-footer strong {
-  color: var(--red);
+footer strong { color: var(--silver); }
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 18px 0;
 }
 
-.social {
-  margin-top: 12px;
-  color: #fff;
+.footer-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 13px;
 }
+
+.footer-links a:hover { color: white; }
 
 /* ANIMATION */
 
 @keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* MOBILE */
 
-@media(max-width: 800px) {
-  header {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+@media(max-width:800px) {
+  header { justify-content: center; }
 
   nav {
     width: 100%;
     justify-content: center;
-    gap: 13px;
-    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  nav a {
-    font-size: 12px;
-  }
+  nav a { font-size: 12px; }
 
   .hero {
-    min-height: 560px;
-    padding: 50px 7%;
+    min-height: 540px;
+    padding: 45px 7%;
     text-align: center;
     justify-content: center;
   }
 
-  .hero-content {
-    max-width: 100%;
-  }
+  .hero p { font-size: 16px; }
 
-  .hero p {
-    font-size: 16px;
-  }
-
-  .buttons {
-    justify-content: center;
-  }
+  .buttons { justify-content: center; }
 
   .cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 12px;
-  }
-
-  .card {
-    padding: 22px 10px;
   }
 }
 
-@media(max-width: 380px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
+@media(max-width:380px) {
+  .cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -352,21 +343,24 @@ footer strong {
 <header>
   <div class="logo">
     ALFR<span>3</span>ON
-    <small style="display:block;font-size:11px;text-align:center;color:#ff1025">
+    <small style="display:block;font-size:11px;text-align:center;color:#c0c0c0">
       WEB BUILDER
     </small>
   </div>
 
   <nav>
-    <a href="#home">الرئيسية</a>
-    <a href="#features">المميزات</a>
-    <a href="#create">القوالب</a>
-    <a href="#support">الدعم</a>
-    <a href="#login" class="login">تسجيل الدخول</a>
+    <a href="index.html">الرئيسية</a>
+    <a href="builder.html">إنشاء موقع</a>
+    <a href="templates.html">القوالب</a>
+    <a href="prompts.html">الأوصاف</a>
+    <a href="dashboard.html">مشاريعي</a>
+    <a href="support.html">الدعم</a>
+    <a href="login.html" class="login">تسجيل الدخول</a>
   </nav>
 </header>
 
 <main>
+
 <section class="hero" id="home">
   <div class="hero-content">
 
@@ -378,13 +372,13 @@ footer strong {
     </h1>
 
     <p>
-      منصتك لإنشاء مواقع إلكترونية احترافية
-      بسهولة وبدون الحاجة إلى خبرة برمجية.
-      ابدأ رحلتك الرقمية معنا.
+      منصتك لإنشاء مواقع إلكترونية احترافية.
+      ابدأ بفكرتك، اختر التصميم المناسب،
+      وابدأ في بناء مشروعك الرقمي.
     </p>
 
     <div class="buttons">
-      <a href="#create" class="btn btn-main">🚀 ابدأ الآن</a>
+      <a href="builder.html" class="btn">🚀 ابدأ الآن</a>
       <a href="#features" class="btn btn-secondary">اكتشف المزيد</a>
     </div>
 
@@ -399,43 +393,68 @@ footer strong {
     <div class="card">
       <div class="symbol">🌐</div>
       <h3>إنشاء المواقع</h3>
-      <p>أنشئ موقعك الإلكتروني الخاص بسهولة.</p>
+      <p>ابدأ في تجهيز موقعك الإلكتروني.</p>
     </div>
 
     <div class="card">
       <div class="symbol">🎨</div>
-      <h3>تصميم احترافي</h3>
-      <p>قوالب متنوعة قابلة للتعديل والتخصيص.</p>
+      <h3>قوالب احترافية</h3>
+      <p>استكشف مجموعة من أفكار التصميم.</p>
     </div>
 
     <div class="card">
-      <div class="symbol">⚡</div>
-      <h3>نشر سريع</h3>
-      <p>جهّز موقعك للنشر على الإنترنت.</p>
+      <div class="symbol">📁</div>
+      <h3>إدارة المشاريع</h3>
+      <p>تابع مشاريعك المحفوظة على جهازك.</p>
     </div>
 
     <div class="card">
       <div class="symbol">🎧</div>
       <h3>الدعم الفني</h3>
-      <p>مساعدة وإرشادات أثناء استخدام المنصة.</p>
+      <p>تواصل مع فريق الدعم عند الحاجة.</p>
     </div>
 
   </div>
 </section>
 
-<section class="cta" id="create">
-  <h2>انضم إلى عالم <span style="color:#ff1025">ALFR3ON</span></h2>
-  <p>ابدأ في تحويل فكرتك إلى موقع إلكتروني حقيقي.</p>
-  <a href="#login" class="btn btn-main">إنشاء حساب جديد</a>
+<section class="section">
+  <h2>استكشف <span>المنصة</span></h2>
+
+  <div class="quick-links">
+    <a href="builder.html">🚀 إنشاء موقع</a>
+    <a href="templates.html">🎨 معرض القوالب</a>
+    <a href="prompts.html">✍️ مكتبة الأوصاف</a>
+    <a href="dashboard.html">📁 مشاريعي</a>
+    <a href="settings.html">⚙️ الإعدادات</a>
+    <a href="about.html">👑 من نحن</a>
+    <a href="support.html">🎧 الدعم الفني</a>
+    <a href="faq.html">❓ الأسئلة الشائعة</a>
+  </div>
 </section>
+
+<section class="cta">
+  <h2>انضم إلى عالم ALFR3ON</h2>
+  <p>ابدأ في تحويل فكرتك إلى مشروع رقمي.</p>
+  <a href="login.html" class="btn">إنشاء حساب جديد</a>
+</section>
+
 </main>
 
-<footer id="support">
+<footer>
   <strong>ALFR3ON DEZAINER</strong>
-  <div class="social">قوة • إبداع • تميز</div>
+
+  <div class="footer-links">
+    <a href="about.html">من نحن</a>
+    <a href="support.html">الدعم الفني</a>
+    <a href="faq.html">الأسئلة الشائعة</a>
+    <a href="terms.html">الشروط والأحكام</a>
+    <a href="privacy.html">سياسة الخصوصية</a>
+    <a href="settings.html">الإعدادات</a>
+  </div>
+
+  <div>قوة • إبداع • تميز</div>
   <p style="margin-top:15px">© 2026 جميع الحقوق محفوظة</p>
 </footer>
 
 </body>
 </html>
-
