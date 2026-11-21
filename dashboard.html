@@ -5,196 +5,237 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مشاريعي | ALFR3ON WEB BUILDER</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Cairo,sans-serif;background:#090909;color:#fff;min-height:100vh}
-header{padding:18px 6%;background:#111;border-bottom:1px solid #292929;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:19px;font-weight:900;color:#ed1830}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-nav a{color:#ddd;text-decoration:none;font-size:13px}
-nav a:hover{color:#ed1830}
-.hero{text-align:center;padding:45px 15px 25px}
-.hero h1{font-size:34px}
-.hero h1 span{color:#ed1830}
-.hero p{color:#aaa;margin-top:8px}
-.stats{width:90%;max-width:1000px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px}
-.stat{background:#151515;border:1px solid #292929;border-radius:13px;padding:18px;text-align:center}
-.stat strong{display:block;font-size:27px;color:#ed1830}
-.stat span{font-size:13px;color:#aaa}
-.actions{width:90%;max-width:1000px;margin:25px auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-button{font-family:inherit;cursor:pointer;border:0;border-radius:9px;padding:11px 17px;font-weight:bold}
-.primary{background:#e50920;color:white}
-.primary:hover{background:#b90016}
-.search{width:90%;max-width:1000px;margin:0 auto 20px}
-input{width:100%;padding:13px;background:#151515;border:1px solid #333;border-radius:10px;color:white;font-family:inherit;outline:none}
-.projects{width:90%;max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;padding-bottom:50px}
-.project{background:#151515;border:1px solid #292929;border-radius:14px;padding:18px}
-.project h3{font-size:18px;margin-bottom:7px}
-.project p{font-size:13px;color:#aaa;line-height:1.8}
-.project .date{font-size:11px;color:#777;margin:12px 0}
-.project-actions{display:flex;gap:8px;flex-wrap:wrap}
-.open{background:#e50920;color:white;flex:1}
-.delete{background:#292929;color:#ff6675}
-.empty{display:none;text-align:center;color:#aaa;padding:35px;grid-column:1/-1}
-.notice{width:90%;max-width:1000px;margin:15px auto;padding:13px;background:#171717;border:1px solid #333;border-radius:10px;color:#aaa;font-size:12px;line-height:1.8}
-footer{text-align:center;padding:25px;color:#777;border-top:1px solid #252525;font-size:13px}
+*{box-sizing:border-box}
+body{
+ margin:0;background:#08080a;color:#eee;
+ font-family:Arial,sans-serif;padding:18px
+}
+header{
+ text-align:center;padding:25px 10px;
+ border-bottom:1px solid #333;margin-bottom:22px
+}
+header h1{color:#c7c7ce}
+header p{color:#aaa}
+.container{max-width:950px;margin:auto}
+.panel{
+ background:#131317;border:1px solid #333;
+ border-radius:14px;padding:18px;margin-bottom:18px
+}
+input{
+ width:100%;padding:14px;border-radius:9px;
+ border:1px solid #555;background:#09090c;
+ color:white;font-size:16px
+}
+button{
+ border:1px solid #aaa;border-radius:8px;
+ padding:11px 16px;margin:5px;
+ cursor:pointer;font-weight:bold;
+ background:linear-gradient(#eee,#999);color:#111
+}
+.dark{background:#292930;color:white;border-color:#555}
+.red{background:#8e1421;color:white;border-color:#c33}
+.project{
+ background:#09090c;border:1px solid #444;
+ border-radius:12px;padding:15px;margin:12px 0
+}
+.project h3{margin-top:0;color:#ddd}
+.details{color:#aaa;font-size:13px;line-height:1.8}
+.actions{margin-top:10px}
+.empty{text-align:center;color:#aaa;padding:30px}
+.stats{color:#ccc;margin:10px 0}
+a{color:#ddd}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">ALFR3ON WEB BUILDER</div>
-<nav>
-<a href="index.html">الرئيسية</a>
-<a href="builder.html">إنشاء موقع</a>
-<a href="templates.html">القوالب</a>
-<a href="prompts.html">الأوصاف</a>
-<a href="dashboard.html">مشاريعي</a>
-</nav>
+<h1>ALFR3ON WEB BUILDER</h1>
+<p>لوحة إدارة مشاريعك</p>
 </header>
 
-<section class="hero">
-<h1>لوحة <span>مشاريعي</span></h1>
-<p>تابع مشاريعك المحفوظة وارجع لها وقت ما تحتاج</p>
+<div class="container">
+
+<section class="panel">
+<h2>مشاريعي</h2>
+<p class="details">إدارة المواقع التي أنشأتها وحفظتها على هذا الجهاز.</p>
+
+<input id="search" placeholder="ابحث عن مشروع..." oninput="renderProjects()">
+
+<div class="stats" id="stats">عدد المشاريع: 0</div>
+
+<button onclick="location.href='builder.html'">+ إنشاء مشروع جديد</button>
+<button class="dark" onclick="exportProjects()">تصدير نسخة احتياطية</button>
+<button class="dark" onclick="document.getElementById('importFile').click()">استيراد نسخة</button>
+<input type="file" id="importFile" accept=".json,application/json" hidden onchange="importProjects(event)">
 </section>
 
-<section class="stats">
-<div class="stat">
-<strong id="total">0</strong>
-<span>إجمالي المشاريع</span>
-</div>
-<div class="stat">
-<strong id="today">0</strong>
-<span>مشاريع اليوم</span>
-</div>
-<div class="stat">
-<strong id="saved">0</strong>
-<span>مشاريع محفوظة</span>
-</div>
+<section class="panel">
+<h2>قائمة المشاريع</h2>
+<div id="projectsList"></div>
 </section>
 
-<div class="actions">
-<h3>جميع المشاريع</h3>
-<button class="primary" onclick="location.href='builder.html'">+ إنشاء مشروع جديد</button>
 </div>
-
-<div class="search">
-<input type="search" id="search" placeholder="ابحث عن مشروع...">
-</div>
-
-<div class="notice">
-يتم حفظ المشاريع على هذا المتصفح والجهاز فقط. لا تنتقل تلقائيًا إلى جهاز آخر، وقد تُفقد عند مسح بيانات المتصفح.
-</div>
-
-<main class="projects" id="projects">
-<div class="empty" id="empty">
-<h3>لا توجد مشاريع حتى الآن</h3>
-<p>ابدأ بإنشاء أول مشروع لك!</p>
-</div>
-</main>
-
-<footer>
-© ALFR3ON DEZAINER - جميع الحقوق محفوظة
-</footer>
 
 <script>
-const KEY = "alfr3on_projects";
+const STORAGE_KEY="alfr3on_projects";
 
 function getProjects(){
-try{
-const data = JSON.parse(localStorage.getItem(KEY) || "[]");
-return Array.isArray(data) ? data : [];
-}catch(error){
-return [];
+ try{
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+ }catch(e){
+  return [];
+ }
 }
 
+function saveProjects(projects){
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(projects));
 }
 
-function saveProjects(data){
-localStorage.setItem(KEY,JSON.stringify(data));
-}
+function renderProjects(){
+ const list=document.getElementById("projectsList");
+ const search=document.getElementById("search").value.trim().toLowerCase();
+ const projects=getProjects();
 
-function update(){
-const projects = getProjects();
-const todayDate = new Date().toDateString();
+ document.getElementById("stats").textContent=
+ "عدد المشاريع: "+projects.length;
 
-document.getElementById("total").textContent=projects.length;
-document.getElementById("saved").textContent=projects.length;
-document.getElementById("today").textContent=
-projects.filter(p=>new Date(p.createdAt).toDateString()===todayDate).length;
+ const filtered=projects.filter(p=>
+  (p.name||"").toLowerCase().includes(search) ||
+  (p.prompt||"").toLowerCase().includes(search)
+ );
 
-render();
-}
+ list.innerHTML="";
 
-function render(){
-const container=document.getElementById("projects");
-const empty=document.getElementById("empty");
-const word=document.getElementById("search").value.trim().toLowerCase();
+ if(!filtered.length){
+  list.innerHTML='<div class="empty">لا توجد مشاريع مطابقة للبحث.</div>';
+  return;
+ }
 
-container.querySelectorAll(".project").forEach(e=>e.remove());
+ filtered.forEach(p=>{
+  const card=document.createElement("div");
+  card.className="project";
 
-const projects=getProjects();
-let count=0;
+  const title=document.createElement("h3");
+  title.textContent=p.name||"مشروع بدون اسم";
 
-projects.slice().reverse().forEach(project=>{
-if(!(project.name||"").toLowerCase().includes(word))return;
+  const description=document.createElement("div");
+  description.className="details";
+  description.textContent=p.prompt||"لا يوجد وصف";
 
-count++;
+  const date=document.createElement("div");
+  date.className="details";
+  date.textContent=p.timestamp?
+   "آخر حفظ: "+new Date(p.timestamp).toLocaleString("ar-EG"):
+   "";
 
-const card=document.createElement("article");
-card.className="project";
+  const actions=document.createElement("div");
+  actions.className="actions";
 
-const title=document.createElement("h3");
-title.textContent=project.name||"مشروع بدون اسم";
+  const open=document.createElement("button");
+  open.textContent="فتح وتعديل";
+  open.onclick=()=>location.href="builder.html?project="+encodeURIComponent(p.id);
 
-const description=document.createElement("p");
-description.textContent=project.description||"لا يوجد وصف للمشروع";
+  const preview=document.createElement("button");
+  preview.className="dark";
+  preview.textContent="معاينة";
+  preview.onclick=()=>{
+   const w=window.open("about:blank","_blank");
+   if(w){
+    w.document.open();
+    w.document.write(p.html||"<h2>لا توجد معاينة</h2>");
+    w.document.close();
+   }
+  };
 
-const date=document.createElement("div");
-date.className="date";
-date.textContent="تاريخ الإنشاء: "+new Date(project.createdAt).toLocaleString("ar-EG");
+  const download=document.createElement("button");
+  download.className="dark";
+  download.textContent="تنزيل";
+  download.onclick=()=>downloadProject(p);
 
-const buttons=document.createElement("div");
-buttons.className="project-actions";
+  const del=document.createElement("button");
+  del.className="red";
+  del.textContent="حذف";
+  del.onclick=()=>deleteProject(p.id);
 
-const open=document.createElement("button");
-open.className="open";
-open.textContent="فتح المشروع";
-open.onclick=()=>openProject(project);
-
-const del=document.createElement("button");
-del.className="delete";
-del.textContent="حذف";
-del.onclick=()=>deleteProject(project.id);
-
-buttons.append(open,del);
-card.append(title,description,date,buttons);
-container.insertBefore(card,empty);
-});
-
-empty.style.display=count===0?"block":"none";
-}
-
-function openProject(project){
-const url="builder.html?project="+encodeURIComponent(project.id);
-location.href=url;
+  actions.append(open,preview,download,del);
+  card.append(title,description,date,actions);
+  list.append(card);
+ });
 }
 
 function deleteProject(id){
-if(!confirm("هل أنت متأكد من حذف هذا المشروع؟"))return;
-const projects=getProjects().filter(p=>p.id!==id);
-saveProjects(projects);
-update();
+ if(!confirm("هل أنت متأكد من حذف هذا المشروع؟"))return;
+
+ saveProjects(getProjects().filter(p=>p.id!==id));
+ renderProjects();
 }
 
-document.getElementById("search").addEventListener("input",render);
+function downloadProject(project){
+ if(!project.html){
+  alert("لا يوجد ملف HTML لهذا المشروع");
+  return;
+ }
 
-window.addEventListener("storage",update);
+ const blob=new Blob([project.html],{type:"text/html;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=(project.name||"website")+".html";
+ a.click();
+ URL.revokeObjectURL(url);
+}
 
-update();
+function exportProjects(){
+ const projects=getProjects();
+ const blob=new Blob(
+  [JSON.stringify(projects,null,2)],
+  {type:"application/json"}
+ );
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="ALFR3ON-backup.json";
+ a.click();
+ URL.revokeObjectURL(url);
+}
+
+function importProjects(event){
+ const file=event.target.files[0];
+ if(!file)return;
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+  try{
+   const imported=JSON.parse(reader.result);
+   if(!Array.isArray(imported))throw new Error();
+
+   const existing=getProjects();
+   const ids=new Set(existing.map(p=>p.id));
+
+   imported.forEach(p=>{
+    if(p && p.id && p.name && p.html && !ids.has(p.id)){
+     existing.push(p);
+     ids.add(p.id);
+    }
+   });
+
+   saveProjects(existing);
+   renderProjects();
+   alert("تم استيراد المشاريع");
+  }catch(e){
+   alert("ملف النسخة الاحتياطية غير صالح");
+  }
+ };
+
+ reader.readAsText(file);
+ event.target.value="";
+}
+
+renderProjects();
 </script>
 
 </body>
