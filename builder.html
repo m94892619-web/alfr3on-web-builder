@@ -6,508 +6,291 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALFR3ON WEB BUILDER</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --red:#e50928;
-  --black:#08080a;
-  --panel:#131317;
-  --silver:#c7c7ce;
+*{box-sizing:border-box}
+body{
+ margin:0;background:#08080a;color:#eee;
+ font-family:Arial,sans-serif;padding:18px
 }
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+header{
+ text-align:center;padding:22px;
+ border-bottom:1px solid #333;margin-bottom:20px
 }
-
-body {
-  background:var(--black);
-  color:white;
-  font-family:'Cairo',sans-serif;
-  min-height:100vh;
+header h1{color:#c7c7ce;margin:0 0 8px}
+header p{color:#aaa}
+.container{max-width:850px;margin:auto}
+.panel{
+ background:#131317;border:1px solid #333;
+ border-radius:14px;padding:18px;margin-bottom:18px
 }
-
-body:before {
-  content:"";
-  position:fixed;
-  width:400px;
-  height:400px;
-  top:-200px;
-  right:-100px;
-  background:#e5092830;
-  filter:blur(120px);
-  pointer-events:none;
+label{display:block;margin:14px 0 7px}
+input,textarea,select{
+ width:100%;padding:13px;border-radius:9px;
+ border:1px solid #555;background:#09090c;
+ color:white;font-size:15px
 }
-
-header {
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #ffffff15;
-  background:#0b0b0de8;
-  position:sticky;
-  top:0;
-  z-index:5;
-  backdrop-filter:blur(15px);
+textarea{min-height:130px;resize:vertical}
+button{
+ border:1px solid #aaa;border-radius:9px;
+ padding:12px 18px;margin:8px 3px;
+ cursor:pointer;font-weight:bold;
+ background:linear-gradient(#eee,#999);
+ color:#111;font-size:14px
 }
-
-.logo {
-  font-size:21px;
-  font-weight:900;
-  letter-spacing:1px;
+button.dark{background:#292930;color:white;border-color:#555}
+button.red{background:#8e1421;color:white;border-color:#c33}
+iframe{
+ width:100%;height:450px;background:white;
+ border:1px solid #555;border-radius:10px
 }
-
-.logo span {
-  color:var(--red);
+.project{
+ padding:12px;border:1px solid #444;
+ border-radius:9px;margin:10px 0;
+ display:flex;justify-content:space-between;
+ align-items:center;gap:8px;flex-wrap:wrap
 }
-
-.home {
-  color:#bbb;
-  text-decoration:none;
-  font-size:13px;
-}
-
-.container {
-  max-width:950px;
-  margin:auto;
-  padding:55px 20px 80px;
-}
-
-.hero {
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.tag {
-  display:inline-block;
-  padding:6px 16px;
-  border:1px solid #e5092855;
-  background:#e5092810;
-  color:#ff5268;
-  border-radius:30px;
-  font-size:12px;
-  margin-bottom:18px;
-}
-
-.hero h1 {
-  font-size:clamp(28px,6vw,45px);
-  font-weight:900;
-}
-
-.hero h1 span {
-  color:var(--red);
-}
-
-.hero p {
-  color:#92929b;
-  font-size:14px;
-  line-height:2;
-  margin-top:10px;
-}
-
-.panel {
-  background:linear-gradient(145deg,#17171c,#101014);
-  border:1px solid #ffffff14;
-  border-radius:18px;
-  padding:25px;
-  margin-bottom:22px;
-  box-shadow:0 15px 50px #0005;
-}
-
-.panel-title {
-  font-size:17px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-.panel-title span {
-  color:var(--red);
-  margin-left:8px;
-}
-
-label {
-  display:block;
-  color:#d0d0d5;
-  font-size:13px;
-  margin:16px 0 8px;
-}
-
-input,select,textarea {
-  width:100%;
-  background:#09090c;
-  border:1px solid #34343c;
-  border-radius:9px;
-  padding:13px;
-  color:white;
-  font-family:inherit;
-  font-size:14px;
-  outline:none;
-}
-
-input:focus,select:focus,textarea:focus {
-  border-color:var(--red);
-  box-shadow:0 0 0 2px #e5092818;
-}
-
-textarea {
-  min-height:150px;
-  resize:vertical;
-  line-height:1.9;
-}
-
-select option {
-  background:#111;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.examples {
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:13px;
-}
-
-.example {
-  border:1px solid #ffffff20;
-  background:#ffffff08;
-  color:#ccc;
-  border-radius:7px;
-  padding:7px 12px;
-  font-family:inherit;
-  font-size:12px;
-  cursor:pointer;
-}
-
-.example:hover {
-  border-color:var(--red);
-  color:white;
-}
-
-.upload {
-  border:1px dashed #555;
-  padding:22px;
-  text-align:center;
-  border-radius:10px;
-  background:#ffffff05;
-}
-
-.upload p {
-  color:#888;
-  font-size:12px;
-  margin-bottom:12px;
-}
-
-.upload input {
-  border:none;
-  padding:5px;
-}
-
-.create {
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:10px;
-  background:linear-gradient(120deg,#ff1838,#a9001b);
-  color:white;
-  font-family:inherit;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 8px 30px #e5092840;
-  transition:.3s;
-}
-
-.create:hover {
-  transform:translateY(-3px);
-  box-shadow:0 10px 35px #e5092870;
-}
-
-.result {
-  display:none;
-  margin-top:22px;
-  padding:20px;
-  border:1px solid #e5092860;
-  border-radius:12px;
-  background:#e509280b;
-}
-
-.result p {
-  color:#ccc;
-  font-size:13px;
-  line-height:2;
-  margin:10px 0;
-}
-
-.copy {
-  background:#222;
-  color:white;
-  border:1px solid #555;
-  padding:10px 18px;
-  border-radius:8px;
-  font-family:inherit;
-  cursor:pointer;
-}
-
-footer {
-  text-align:center;
-  border-top:1px solid #ffffff15;
-  padding:25px;
-  color:#777;
-  font-size:12px;
-}
-
-footer span {
-  color:var(--red);
-}
-
-@media(max-width:600px) {
-  .grid {
-    grid-template-columns:1fr;
-  }
-
-  .panel {
-    padding:18px;
-  }
-
-  header {
-    padding:15px 5%;
-  }
-}
+.small{color:#aaa;font-size:13px}
 </style>
 </head>
 
 <body>
-
 <header>
-  <div class="logo">ALFR3ON <span>WEB BUILDER</span></div>
-  <a class="home" href="index.html">الرئيسية</a>
+<h1>ALFR3ON WEB BUILDER</h1>
+<p>منصة إنشاء وإدارة المواقع</p>
 </header>
 
-<main class="container">
+<div class="container">
 
-<section class="hero">
-  <div class="tag">✦ AI WEBSITE GENERATOR</div>
-  <h1>أنشئ موقعك <span>الخاص</span></h1>
-  <p>
-    اكتب فكرتك وحدد مواصفات موقعك
-    وابدأ رحلتك في صناعة موقعك الإلكتروني.
-  </p>
+<section class="panel">
+<h2>إنشاء مشروع جديد</h2>
+
+<label>اسم المشروع</label>
+<input id="projectName" placeholder="اكتب اسم موقعك">
+
+<label>وصف الموقع</label>
+<textarea id="description" placeholder="اشرح الموقع الذي تريد إنشاءه..."></textarea>
+
+<label>لون الموقع</label>
+<select id="siteColor">
+<option value="#111827">أزرق داكن</option>
+<option value="#111111">أسود</option>
+<option value="#8b0000">أحمر</option>
+<option value="#17452d">أخضر</option>
+<option value="#563080">بنفسجي</option>
+</select>
+
+<button onclick="generateSite()">إنشاء معاينة</button>
+<button class="dark" onclick="saveProject()">حفظ المشروع</button>
+<button class="dark" onclick="newProject()">مشروع جديد</button>
 </section>
 
 <section class="panel">
-
-  <div class="panel-title">
-    <span>01</span> وصف الموقع
-  </div>
-
-  <label>اسم المشروع</label>
-  <input id="projectName" placeholder="مثال: متجر الفرعون">
-
-  <label>اكتب وصف الموقع الذي تريد إنشاءه</label>
-  <textarea id="description"
-  placeholder="اشرح لنا فكرتك بالتفصيل... مثال: أريد إنشاء متجر إلكتروني لبيع الملابس، يحتوي على صفحة رئيسية وقسم للمنتجات وسلة مشتريات وصفحة تواصل معنا..."></textarea>
-
-  <div class="examples">
-    <button class="example" onclick="fillExample('أريد إنشاء متجر إلكتروني لبيع الملابس مع المنتجات والأسعار وسلة المشتريات.')">متجر إلكتروني</button>
-    <button class="example" onclick="fillExample('أريد إنشاء موقع أكاديمية تعليمية يحتوي على الكورسات والمدرسين والتسجيل.')">أكاديمية</button>
-    <button class="example" onclick="fillExample('أريد إنشاء موقع شركة احترافي لعرض الخدمات والأعمال وطرق التواصل.')">شركة</button>
-    <button class="example" onclick="fillExample('أريد إنشاء موقع مطعم يعرض قائمة الطعام والأسعار وطرق الحجز.')">مطعم</button>
-  </div>
-
+<h2>معاينة الموقع</h2>
+<iframe id="preview"></iframe>
+<button onclick="downloadSite()">تنزيل ملف الموقع</button>
 </section>
 
 <section class="panel">
-
-  <div class="panel-title">
-    <span>02</span> إعدادات الموقع
-  </div>
-
-  <div class="grid">
-
-    <div>
-      <label>نوع الموقع</label>
-      <select id="siteType">
-        <option value="شركة">شركة</option>
-        <option value="متجر إلكتروني">متجر إلكتروني</option>
-        <option value="أكاديمية تعليمية">أكاديمية تعليمية</option>
-        <option value="موقع شخصي">موقع شخصي</option>
-        <option value="مطعم">مطعم</option>
-        <option value="أخبار">أخبار</option>
-        <option value="ألعاب">ألعاب</option>
-        <option value="تواصل اجتماعي">تواصل اجتماعي</option>
-        <option value="خدمات وحجوزات">خدمات وحجوزات</option>
-        <option value="لوحة تحكم">لوحة تحكم</option>
-        <option value="إدارة أعمال">إدارة أعمال</option>
-        <option value="تطبيق ويب">تطبيق ويب</option>
-        <option value="تعليم">تعليم</option>
-        <option value="عضويات">عضويات</option>
-      </select>
-    </div>
-
-    <div>
-      <label>لغة الموقع</label>
-      <select id="language">
-        <option value="العربية">العربية</option>
-        <option value="الإنجليزية">الإنجليزية</option>
-        <option value="الألمانية">الألمانية</option>
-        <option value="متعدد اللغات">متعدد اللغات</option>
-      </select>
-    </div>
-
-    <div>
-      <label>اللون الأساسي</label>
-      <select id="color">
-        <option value="أسود وأحمر">أسود وأحمر</option>
-        <option value="أسود وفضي">أسود وفضي</option>
-        <option value="أزرق وأبيض">أزرق وأبيض</option>
-        <option value="أبيض وذهبي">أبيض وذهبي</option>
-        <option value="أخضر وأبيض">أخضر وأبيض</option>
-        <option value="اختيار تلقائي">اختيار تلقائي</option>
-      </select>
-    </div>
-
-    <div>
-      <label>أسلوب التصميم</label>
-      <select id="style">
-        <option value="فاخر">فاخر</option>
-        <option value="عصري">عصري</option>
-        <option value="بسيط">بسيط</option>
-        <option value="تقني">تقني</option>
-        <option value="كلاسيكي">كلاسيكي</option>
-      </select>
-    </div>
-
-  </div>
-
-  <label>متطلبات إضافية</label>
-  <textarea id="features" placeholder="مثال: تسجيل حسابات، لوحة تحكم، بحث، إشعارات، نظام حجز..."></textarea>
-
+<h2>مشاريعي المحفوظة</h2>
+<div id="projectsList"></div>
 </section>
 
-<section class="panel">
-
-  <div class="panel-title">
-    <span>03</span> الصور والملفات
-  </div>
-
-  <div class="upload">
-    <p>أضف صورًا أو ملفات تساعد في فهم شكل موقعك المطلوب</p>
-    <input type="file" id="files" accept="image/*,.pdf" multiple>
-    <div id="fileNames"></div>
-  </div>
-
-</section>
-
-<button class="create" onclick="generatePrompt()">
-  ✦ تجهيز طلب إنشاء الموقع
-</button>
-
-<section class="result" id="result">
-  <h3>تم تجهيز وصف مشروعك</h3>
-  <p id="summary"></p>
-  <button class="copy" onclick="copyPrompt()">نسخ وصف المشروع</button>
-  <p id="copyMessage"></p>
-</section>
-
-</main>
-
-<footer>
-  <strong>ALFR3ON DEZAINER</strong>
-  <br>
-  <span>ALFR3ON WEB BUILDER</span> © 2026
-</footer>
+</div>
 
 <script>
+const STORAGE_KEY = "alfr3on_projects";
+let currentId = null;
+let currentHTML = "";
 
-function fillExample(text) {
-  document.getElementById("description").value = text;
+function getProjects(){
+ try{
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+ }catch(e){return []}
 }
 
-document.getElementById("files").addEventListener("change", function() {
-  const files = Array.from(this.files);
-  document.getElementById("fileNames").textContent =
-    files.length ? "عدد الملفات المختارة: " + files.length : "";
-});
+function makeId(){
+ return Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+}
 
-let finalPrompt = "";
+function generateSite(){
+ const name=document.getElementById("projectName").value.trim();
+ const desc=document.getElementById("description").value.trim();
+ const color=document.getElementById("siteColor").value;
 
-function generatePrompt() {
+ if(!name || !desc){
+  alert("اكتب اسم المشروع ووصف الموقع أولاً");
+  return;
+ }
 
-  const name = document.getElementById("projectName").value.trim();
-  const description = document.getElementById("description").value.trim();
+ currentHTML=`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escapeHTML(name)}</title>
+<style>
+body{margin:0;font-family:Arial;background:${color};color:white;text-align:center}
+header{padding:65px 15px}
+h1{font-size:38px}
+p{font-size:19px;line-height:1.9}
+main{max-width:750px;margin:auto;padding:20px}
+footer{padding:25px;background:#0005}
+</style>
+</head>
+<body>
+<header>
+<h1>${escapeHTML(name)}</h1>
+<p>${escapeHTML(desc).replace(/\n/g,"<br>")}</p>
+</header>
+<main>
+<h2>مرحباً بك</h2>
+<p>هذا موقعك المبدئي. يمكنك تطويره وإضافة الأقسام والصور والروابط لاحقاً.</p>
+</main>
+<footer>تم الإنشاء بواسطة ALFR3ON WEB BUILDER</footer>
+</body>
+</html>`;
 
-  if (!name || !description) {
-    alert("من فضلك اكتب اسم المشروع ووصف الموقع.");
-    return;
+ document.getElementById("preview").srcdoc=currentHTML;
+}
+
+function escapeHTML(value){
+ return value.replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+ });
+}
+
+function saveProject(){
+ const name=document.getElementById("projectName").value.trim();
+ const desc=document.getElementById("description").value.trim();
+
+ if(!name || !desc){
+  alert("اكتب اسم المشروع والوصف");
+  return;
+ }
+
+ if(!currentHTML) generateSite();
+ if(!currentHTML) return;
+
+ let projects=getProjects();
+ const now=new Date().toISOString();
+
+ if(currentId){
+  const index=projects.findIndex(p=>p.id===currentId);
+  if(index!==-1){
+   projects[index]={...projects[index],name,prompt:desc,html:currentHTML,timestamp:now};
+  }else{
+   projects.push({id:currentId,name,prompt:desc,html:currentHTML,timestamp:now});
   }
+ }else{
+  currentId=makeId();
+  projects.push({id:currentId,name,prompt:desc,html:currentHTML,timestamp:now});
+ }
 
-  const type = document.getElementById("siteType").value;
-  const language = document.getElementById("language").value;
-  const color = document.getElementById("color").value;
-  const style = document.getElementById("style").value;
-  const features = document.getElementById("features").value.trim();
-
-  finalPrompt =
-`اسم المشروع: ${name}
-
-وصف الموقع:
-${description}
-
-نوع الموقع: ${type}
-لغة الموقع: ${language}
-الألوان: ${color}
-أسلوب التصميم: ${style}
-
-المميزات والمتطلبات الإضافية:
-${features || "يتم اقتراح المميزات المناسبة حسب طبيعة الموقع."}
-
-يرجى إنشاء موقع متكامل ومتجاوب مع الهاتف والكمبيوتر، مع واجهة احترافية وتجربة استخدام سهلة.`;
-
-  document.getElementById("summary").textContent =
-    "اسم المشروع: " + name +
-    " | نوع الموقع: " + type +
-    " | اللغة: " + language;
-
-  document.getElementById("result").style.display = "block";
-
-  document.getElementById("result").scrollIntoView({
-    behavior:"smooth"
-  });
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(projects));
+ renderProjects();
+ alert("تم حفظ المشروع على هذا الجهاز");
 }
 
-function copyPrompt() {
-  if (!finalPrompt) return;
+function renderProjects(){
+ const list=document.getElementById("projectsList");
+ const projects=getProjects();
 
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(finalPrompt).then(() => {
-      document.getElementById("copyMessage").textContent =
-        "تم نسخ وصف المشروع بنجاح.";
-    }).catch(() => fallbackCopy());
-  } else {
-    fallbackCopy();
-  }
+ if(!projects.length){
+  list.innerHTML="<p class='small'>لا توجد مشاريع محفوظة حتى الآن</p>";
+  return;
+ }
+
+ list.innerHTML="";
+ projects.forEach(p=>{
+  const div=document.createElement("div");
+  div.className="project";
+
+  const info=document.createElement("div");
+  const title=document.createElement("strong");
+  title.textContent=p.name;
+  const date=document.createElement("div");
+  date.className="small";
+  date.textContent=p.timestamp ? new Date(p.timestamp).toLocaleString("ar-EG") : "";
+  info.append(title,date);
+
+  const actions=document.createElement("div");
+  const open=document.createElement("button");
+  open.className="dark";
+  open.textContent="فتح";
+  open.onclick=()=>openProject(p.id);
+
+  const del=document.createElement("button");
+  del.className="red";
+  del.textContent="حذف";
+  del.onclick=()=>deleteProject(p.id);
+
+  actions.append(open,del);
+  div.append(info,actions);
+  list.append(div);
+ });
 }
 
-function fallbackCopy() {
-  const area = document.createElement("textarea");
-  area.value = finalPrompt;
-  document.body.appendChild(area);
-  area.select();
-  document.execCommand("copy");
-  area.remove();
-  document.getElementById("copyMessage").textContent =
-    "تم نسخ وصف المشروع.";
+function openProject(id){
+ const p=getProjects().find(x=>x.id===id);
+ if(!p)return;
+
+ currentId=p.id;
+ currentHTML=p.html || "";
+ document.getElementById("projectName").value=p.name || "";
+ document.getElementById("description").value=p.prompt || "";
+ document.getElementById("preview").srcdoc=currentHTML;
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
+function deleteProject(id){
+ if(!confirm("هل تريد حذف المشروع؟"))return;
+
+ const projects=getProjects().filter(p=>p.id!==id);
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(projects));
+
+ if(currentId===id)newProject();
+ renderProjects();
+}
+
+function newProject(){
+ currentId=null;
+ currentHTML="";
+ document.getElementById("projectName").value="";
+ document.getElementById("description").value="";
+ document.getElementById("preview").srcdoc="";
+}
+
+function downloadSite(){
+ if(!currentHTML){
+  alert("أنشئ معاينة الموقع أولاً");
+  return;
+ }
+ const blob=new Blob([currentHTML],{type:"text/html;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="alfr3on-website.html";
+ a.click();
+ URL.revokeObjectURL(url);
+}
+
+function loadFromAddress(){
+ const params=new URLSearchParams(location.search);
+ const projectId=params.get("project");
+ const template=params.get("template");
+ const prompt=params.get("prompt");
+
+ if(projectId){
+  openProject(projectId);
+ }else if(template){
+  document.getElementById("projectName").value=template;
+ }else if(prompt){
+  document.getElementById("description").value=prompt;
+ }
+}
+
+renderProjects();
+loadFromAddress();
 </script>
-
 </body>
 </html>
