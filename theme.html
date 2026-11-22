@@ -4,103 +4,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALFR3ON WEB BUILDER</title>
+<title>ALFR3ON | إعدادات المظهر</title>
 
 <style>
+:root {
+  --main: #bfc3c9;
+  --accent: #b90020;
+  --bg: #08090d;
+  --panel: rgba(15,17,23,.88);
+  --text: #f4f4f4;
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin: 0;
-    background: #080808;
-    color: white;
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.83),rgba(0,0,0,.9)),
+    url("wolf-bg.jpg") center/cover fixed,
+    #08090d;
 }
 
 header {
-    padding: 22px;
-    text-align: center;
-    border-bottom: 1px solid #333;
+  padding: 22px;
+  background: rgba(0,0,0,.75);
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
-    font-size: 27px;
-    font-weight: bold;
-    color: #d0d0d0;
-    letter-spacing: 2px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--main);
 }
 
-.logo span {
-    color: #a60000;
+header a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  border: 1px solid #777;
+  border-radius: 9px;
 }
 
 .container {
-    max-width: 950px;
-    margin: auto;
-    padding: 50px 20px;
-    text-align: center;
+  width: min(950px, 92%);
+  margin: 35px auto;
 }
 
 h1 {
-    font-size: 35px;
-    color: #eeeeee;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-.description {
-    color: #aaa;
-    line-height: 1.9;
-    margin: 20px auto 35px;
+.subtitle {
+  color: #aaa;
+  margin-bottom: 25px;
+  line-height: 1.8;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
+.panel {
+  background: var(--panel);
+  border: 1px solid #454545;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(12px);
 }
 
-.btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 9px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #111;
-    background: linear-gradient(135deg,#fff,#aaa,#777);
-    border: 1px solid #eee;
-    transition: 0.3s;
+.panel h2 {
+  font-size: 19px;
+  margin-bottom: 18px;
+  color: var(--main);
 }
 
-.btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 5px 20px #8885;
+.setting {
+  margin-bottom: 20px;
 }
 
-.btn-red {
-    background: #a60000;
-    color: white;
-    border-color: #a60000;
+.setting label {
+  display: block;
+  margin-bottom: 10px;
+  color: #ddd;
 }
 
-.section {
-    margin-top: 55px;
-    padding: 25px;
-    background: #151515;
-    border: 1px solid #333;
-    border-radius: 15px;
+input[type="color"] {
+  width: 65px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
-.section h2 {
-    color: #c0c0c0;
+select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  background: #17191f;
+  color: white;
+  border: 1px solid #555;
+}
+
+.preview {
+  padding: 25px;
+  border: 1px solid var(--main);
+  border-radius: 13px;
+  text-align: center;
+}
+
+.preview h3 {
+  color: var(--main);
+  margin-bottom: 12px;
+}
+
+.preview button {
+  background: var(--main);
+  color: #111;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 9px;
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  flex: 1;
+  min-width: 130px;
+  padding: 14px;
+  border: none;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save {
+  background: var(--main);
+  color: #111;
+}
+
+.reset {
+  background: #333;
+  color: white;
+  border: 1px solid #666 !important;
+}
+
+.message {
+  color: #70db91;
+  margin-top: 15px;
+  display: none;
 }
 
 footer {
-    text-align: center;
-    padding: 25px;
-    color: #888;
-    border-top: 1px solid #333;
-    margin-top: 50px;
+  text-align: center;
+  padding: 25px;
+  color: #888;
 }
 </style>
 </head>
@@ -108,42 +180,128 @@ footer {
 <body>
 
 <header>
-    <div class="logo">
-        ALFR3ON <span>WEB</span> BUILDER
-    </div>
+  <div class="logo">ALFR3ON WEB BUILDER</div>
+  <a href="index.html">العودة للرئيسية</a>
 </header>
 
 <main class="container">
 
-    <h1>اصنع موقعك الخاص بسهولة</h1>
+  <h1>إعدادات المظهر</h1>
+  <p class="subtitle">
+    تحكم في ألوان واجهة المنصة وشاهد التغييرات قبل حفظها.
+  </p>
 
-    <p class="description">
-        مرحباً بك في ALFR3ON WEB BUILDER
-        منصتك لإنشاء وتصميم المواقع الإلكترونية
-        بهوية احترافية وتصميم مميز.
-    </p>
+  <section class="panel">
+    <h2>الألوان</h2>
 
-    <div class="buttons">
-        <a href="builder.html" class="btn">ابدأ إنشاء موقعك</a>
-        <a href="templates.html" class="btn">استكشف القوالب</a>
-        <a href="prompts.html" class="btn btn-red">مكتبة الأوصاف</a>
+    <div class="setting">
+      <label for="mainColor">اللون الأساسي</label>
+      <input type="color" id="mainColor" value="#bfc3c9">
     </div>
 
-    <div class="section">
-        <h2>إبداع بلا حدود</h2>
-        <p class="description">
-            حوّل أفكارك إلى مواقع إلكترونية
-            وابدأ مشروعك الرقمي مع ALFR3ON.
-        </p>
+    <div class="setting">
+      <label for="accentColor">اللون الإضافي</label>
+      <input type="color" id="accentColor" value="#b90020">
     </div>
+
+    <div class="setting">
+      <label for="backgroundColor">لون الخلفية</label>
+      <input type="color" id="backgroundColor" value="#08090d">
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>معاينة المظهر</h2>
+
+    <div class="preview">
+      <h3>ALFR3ON DEZAINER</h3>
+      <p>اصنع موقعك الخاص بأسلوبك.</p>
+      <button type="button">ابدأ الآن</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>حفظ الإعدادات</h2>
+
+    <div class="actions">
+      <button class="save" onclick="saveTheme()">حفظ المظهر</button>
+      <button class="reset" onclick="resetTheme()">استعادة الافتراضي</button>
+    </div>
+
+    <p class="message" id="message">تم حفظ الإعدادات على هذا الجهاز.</p>
+  </section>
 
 </main>
 
 <footer>
-    © 2026 ALFR3ON DEZAINER
-    <br>
-    جميع الحقوق محفوظة
+  ALFR3ON DEZAINER © 2026
 </footer>
+
+<script>
+const defaults = {
+  main: "#bfc3c9",
+  accent: "#b90020",
+  bg: "#08090d"
+};
+
+const mainInput = document.getElementById("mainColor");
+const accentInput = document.getElementById("accentColor");
+const bgInput = document.getElementById("backgroundColor");
+
+function applyTheme(theme) {
+  document.documentElement.style.setProperty("--main", theme.main);
+  document.documentElement.style.setProperty("--accent", theme.accent);
+  document.documentElement.style.setProperty("--bg", theme.bg);
+
+  document.body.style.backgroundColor = theme.bg;
+
+  mainInput.value = theme.main;
+  accentInput.value = theme.accent;
+  bgInput.value = theme.bg;
+}
+
+function getTheme() {
+  return {
+    main: mainInput.value,
+    accent: accentInput.value,
+    bg: bgInput.value
+  };
+}
+
+[mainInput, accentInput, bgInput].forEach(input => {
+  input.addEventListener("input", () => {
+    applyTheme(getTheme());
+  });
+});
+
+function saveTheme() {
+  const theme = getTheme();
+
+  localStorage.setItem(
+    "alfr3on_theme",
+    JSON.stringify(theme)
+  );
+
+  const message = document.getElementById("message");
+  message.style.display = "block";
+}
+
+function resetTheme() {
+  applyTheme(defaults);
+  localStorage.removeItem("alfr3on_theme");
+  document.getElementById("message").style.display = "none";
+}
+
+try {
+  const saved = JSON.parse(
+    localStorage.getItem("alfr3on_theme")
+  );
+
+  applyTheme(saved || defaults);
+} catch {
+  applyTheme(defaults);
+}
+</script>
 
 </body>
 </html>
