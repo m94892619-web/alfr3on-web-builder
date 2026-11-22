@@ -456,5 +456,55 @@ footer strong { color: var(--silver); }
   <p style="margin-top:15px">© 2026 جميع الحقوق محفوظة</p>
 </footer>
 
+<style>
+/* ALFR3ON Global Theme */
+body {
+  background-color: var(--bg, #08090d) !important;
+}
+
+button, .btn, input[type="submit"] {
+  border-color: var(--main, #bfc3c9);
+}
+
+button {
+  transition: .25s ease;
+}
+
+button:hover, .btn:hover {
+  filter: brightness(1.2);
+}
+
+a {
+  transition: .2s ease;
+}
+
+::selection {
+  background: var(--accent, #b90020);
+  color: white;
+}
+</style>
+
+<script>
+(function () {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("alfr3on_theme")
+    );
+
+    if (!saved) return;
+
+    const root = document.documentElement;
+
+    root.style.setProperty("--main", saved.main);
+    root.style.setProperty("--accent", saved.accent);
+    root.style.setProperty("--bg", saved.bg);
+
+    document.body.style.backgroundColor = saved.bg;
+  } catch (error) {
+    console.error("Theme loading error:", error);
+  }
+})();
+</script>
+
 </body>
 </html>
