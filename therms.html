@@ -4,61 +4,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الشروط والأحكام | ALFR3ON</title>
+<title>الشروط والأحكام | ALFR3ON WEB BUILDER</title>
 
 <style>
-*{box-sizing:border-box}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-margin:0;
-background:#080808;
-color:white;
 font-family:Arial,sans-serif;
-line-height:2;
+background:#090909;
+color:#fff;
+line-height:1.9;
 }
-
 header{
-background:#141414;
-padding:30px 15px;
+padding:20px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #292929;
+}
+.logo{font-size:23px;font-weight:900;color:#ddd}
+nav a{
+color:#ccc;text-decoration:none;
+margin:0 8px;font-size:14px;
+}
+nav a:hover{color:#fff}
+.hero{
 text-align:center;
-border-bottom:1px solid #555;
+padding:65px 20px;
+background:linear-gradient(135deg,#191919,#080808);
 }
-
-header h1{color:#c0c0c0}
-
-.container{
-max-width:850px;
-margin:30px auto;
-padding:20px;
-}
-
-section{
+.hero h1{font-size:34px;margin-bottom:10px}
+.hero p{color:#aaa}
+.container{max-width:900px;margin:auto;padding:40px 20px}
+.section{
 background:#151515;
-border:1px solid #333;
-border-radius:14px;
-padding:22px;
-margin-bottom:18px;
+border:1px solid #303030;
+border-radius:13px;
+padding:23px;
+margin-bottom:17px;
 }
-
-h2{color:#c0c0c0}
-p,li{color:#bbb}
-
-button{
-display:block;
-margin:25px auto;
-padding:13px 25px;
-border:1px solid white;
-border-radius:9px;
-background:linear-gradient(135deg,#fff,#bbb,#777);
-color:#080808;
-font-weight:bold;
-cursor:pointer;
+.section h2{font-size:20px;margin-bottom:10px;color:#eee}
+.section p,.section li{color:#aaa;font-size:14px}
+.section ul{padding-right:22px}
+.notice{
+background:#1c1c1c;
+border-right:3px solid #aaa;
+padding:15px;
+border-radius:8px;
+color:#bbb;
+font-size:14px;
+margin-bottom:20px;
 }
-
 footer{
 text-align:center;
-color:#777;
 padding:25px;
+border-top:1px solid #292929;
+color:#888;font-size:13px;
+}
+footer a{color:#ccc;text-decoration:none}
+@media(max-width:600px){
+header{flex-direction:column;gap:12px}
+.hero h1{font-size:27px}
+nav a{margin:0 5px}
 }
 </style>
 </head>
@@ -66,73 +72,144 @@ padding:25px;
 <body>
 
 <header>
-<h1>ALFR3ON</h1>
-<h2>الشروط والأحكام</h2>
+<div class="logo">ALFR3ON</div>
+<nav>
+<a href="index.html">الرئيسية</a>
+<a href="builder.html">إنشاء موقع</a>
+<a href="template.html">القوالب</a>
+<a href="support.html">الدعم</a>
+</nav>
 </header>
+
+<section class="hero">
+<h1>الشروط والأحكام</h1>
+<p>القواعد المنظمة لاستخدام منصة ALFR3ON WEB BUILDER</p>
+</section>
 
 <main class="container">
 
-<section>
-<h2>1. استخدام المنصة</h2>
+<div class="notice">
+يرجى قراءة الشروط التالية قبل استخدام المنصة. هذه مسودة تشغيلية عامة، ويجب مراجعتها قانونيًا قبل اعتمادها كاتفاق ملزم أو إطلاق الخدمة للجمهور.
+</div>
+
+<section class="section">
+<h2>1. قبول الشروط</h2>
 <p>
-باستخدامك لمنصة ALFR3ON WEB BUILDER
-فأنت توافق على الالتزام بهذه الشروط
-واستخدام المنصة بطريقة قانونية ومسؤولة.
+باستخدام منصة ALFR3ON WEB BUILDER، يقر المستخدم
+بأنه قرأ هذه الشروط وفهمها، ويوافق على الالتزام بها
+أثناء استخدام الخدمات المتاحة.
 </p>
 </section>
 
-<section>
-<h2>2. الحسابات</h2>
+<section class="section">
+<h2>2. استخدام المنصة</h2>
+<ul>
+<li>استخدام المنصة لأغراض مشروعة فقط.</li>
+<li>تقديم معلومات صحيحة عند إنشاء الحساب إذا طُلب ذلك.</li>
+<li>عدم محاولة تعطيل المنصة أو الإضرار بأنظمتها.</li>
+<li>عدم استخدام المنصة لانتهاك حقوق الآخرين.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>3. الحسابات والمسؤولية</h2>
 <p>
-يجب تقديم بيانات صحيحة عند إنشاء الحساب،
-والمحافظة على سرية بيانات تسجيل الدخول.
+المستخدم مسؤول عن الحفاظ على سرية بيانات حسابه
+وعن الأنشطة التي تتم من خلاله. يجب عدم مشاركة
+بيانات الدخول مع أشخاص غير مصرح لهم.
 </p>
 </section>
 
-<section>
-<h2>3. المشاريع والتصميمات</h2>
+<section class="section">
+<h2>4. المشاريع والمحتوى</h2>
 <p>
-يتحمل المستخدم مسؤولية المحتوى الذي يرفعه
-أو ينشئه من خلال المنصة، ويجب احترام حقوق
-الملكية الفكرية للآخرين.
+يتحمل المستخدم مسؤولية المحتوى الذي يضيفه إلى
+المواقع التي ينشئها، بما في ذلك النصوص والصور
+والشعارات والمواد التي يملك حق استخدامها.
 </p>
 </section>
 
-<section>
-<h2>4. الاشتراكات والمدفوعات</h2>
+<section class="section">
+<h2>5. حقوق الملكية الفكرية</h2>
 <p>
-أي اشتراكات أو خدمات مدفوعة تخضع للأسعار
-والشروط التي تعلنها المنصة عند تفعيلها.
-ولا تعتبر هذه الصفحة تأكيدًا على وجود
-نظام دفع إلكتروني مفعل حاليًا.
+تظل حقوق المنصة واسم ALFR3ON WEB BUILDER
+والتصميمات والأدوات والمواد الخاصة بها محفوظة
+لأصحابها. ولا يجوز نسخها أو إعادة توزيعها
+أو استغلالها تجاريًا دون إذن مناسب.
 </p>
 </section>
 
-<section>
-<h2>5. التحديثات</h2>
+<section class="section">
+<h2>6. العلامة المائية وروابط المنصة</h2>
 <p>
-تحتفظ إدارة المنصة بحق تطوير الخدمات
-وتحديث الخصائص والشروط مع توضيح
-التغييرات للمستخدمين.
+من المخطط إظهار علامة ALFR3ON ورابط المنصة
+في المواقع التي يتم إنشاؤها من خلالها، وفقًا
+لخصائص النشر وشروط الخدمة التي سيتم اعتمادها.
 </p>
 </section>
 
-<section>
-<h2>6. التواصل والدعم</h2>
+<section class="section">
+<h2>7. الخدمات والتحديثات</h2>
 <p>
-للاستفسارات والمشكلات يمكنك التواصل
-مع فريق الدعم الفني من خلال صفحة الدعم.
+قد تتم إضافة خصائص جديدة أو تعديل خصائص موجودة
+أو إيقاف بعض الخدمات لأسباب تقنية أو تشغيلية.
+وسيتم توضيح أي تغييرات جوهرية للمستخدمين عند الحاجة.
 </p>
 </section>
 
-<button onclick="location.href='index.html'">
-العودة للرئيسية
-</button>
+<section class="section">
+<h2>8. الاشتراكات والمدفوعات</h2>
+<p>
+إذا تم إطلاق خدمات مدفوعة أو باقات اشتراك،
+فسيتم توضيح الأسعار والمدة والمميزات وسياسة
+الإلغاء والاسترداد قبل إتمام عملية الدفع.
+ولا تُعد هذه الصفحة وحدها إثباتًا لتفعيل أي اشتراك.
+</p>
+</section>
+
+<section class="section">
+<h2>9. حدود المسؤولية</h2>
+<p>
+نسعى إلى توفير خدمة مستقرة، لكن قد تحدث أعطال
+أو انقطاعات أو أخطاء تقنية. ولا ينبغي اعتبار
+المنصة خالية من الأخطاء أو ضمانًا لاستمرار
+كل خدمة دون انقطاع.
+</p>
+</section>
+
+<section class="section">
+<h2>10. إيقاف الحساب أو الاستخدام</h2>
+<p>
+يجوز اتخاذ إجراءات مناسبة عند إساءة استخدام
+المنصة أو مخالفة الشروط، مع مراعاة القوانين
+والحقوق والإجراءات المعمول بها.
+</p>
+</section>
+
+<section class="section">
+<h2>11. تعديل الشروط</h2>
+<p>
+قد يتم تحديث هذه الشروط من وقت لآخر. ويُعد
+نشر النسخة الجديدة في هذه الصفحة وسيلة لإعلام
+المستخدمين بالتعديلات.
+</p>
+</section>
+
+<section class="section">
+<h2>12. التواصل</h2>
+<p>
+للاستفسارات أو الإبلاغ عن مشكلة، يمكنك زيارة
+صفحة الدعم الفني.
+</p>
+<p><a href="support.html" style="color:#ddd">الانتقال إلى الدعم الفني</a></p>
+</section>
 
 </main>
 
 <footer>
-ALFR3ON DEZAINER © 2026
+<p>© 2026 ALFR3ON WEB BUILDER</p>
+<p>تطوير ALFR3ON DEZAINER</p>
+<a href="index.html">العودة للرئيسية</a>
 </footer>
 
 </body>
