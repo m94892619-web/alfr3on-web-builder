@@ -5,167 +5,275 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مكتبة الأوصاف | ALFR3ON WEB BUILDER</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Cairo,sans-serif;background:#090909;color:white}
-header{padding:18px 6%;background:#111;border-bottom:1px solid #292929;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:19px;font-weight:900;color:#ed1830}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-nav a{color:#ddd;text-decoration:none;font-size:13px}
-nav a:hover{color:#ed1830}
-.hero{text-align:center;padding:45px 15px 25px}
-.hero h1{font-size:34px}
-.hero h1 span{color:#ed1830}
-.hero p{color:#aaa;margin-top:10px}
-.search{max-width:650px;margin:25px auto;padding:0 15px}
-input{width:100%;padding:14px;background:#151515;border:1px solid #333;border-radius:10px;color:white;font-family:inherit;font-size:15px;outline:none}
-.filters{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;padding:10px 15px 30px}
-.filter{background:#171717;color:#ccc;border:1px solid #333;padding:9px 16px;border-radius:25px;font-family:inherit;cursor:pointer}
-.filter.active,.filter:hover{background:#e50920;color:white;border-color:#e50920}
-.container{width:90%;max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;padding-bottom:55px}
-.card{background:#141414;border:1px solid #292929;border-radius:14px;padding:20px}
-.card h3{font-size:17px;margin-bottom:10px}
-.card p{font-size:13px;line-height:1.9;color:#bbb;min-height:95px}
-.tag{display:inline-block;color:#ff5264;background:#321016;padding:4px 10px;border-radius:20px;font-size:11px;margin:12px 0}
-.actions{display:flex;gap:8px}
-button{font-family:inherit;cursor:pointer;border:0;border-radius:8px;padding:10px;font-weight:bold}
-.copy{background:#292929;color:white;flex:1}
-.use{background:#e50920;color:white;flex:1}
-.copy:hover{background:#444}
-.use:hover{background:#b90016}
-#empty{display:none;text-align:center;color:#aaa;grid-column:1/-1;padding:30px}
-footer{text-align:center;padding:25px;color:#777;border-top:1px solid #252525;font-size:13px}
+body{
+font-family:Arial,sans-serif;
+background:#090909;
+color:#fff;
+line-height:1.8;
+}
+header{
+padding:18px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #292929;
+}
+.logo{font-size:23px;font-weight:900;color:#ddd}
+nav a{
+color:#ccc;text-decoration:none;
+margin:0 8px;font-size:14px;
+}
+nav a:hover{color:#fff}
+.hero{
+text-align:center;
+padding:60px 20px;
+background:linear-gradient(135deg,#191919,#080808);
+}
+.hero h1{font-size:34px;margin-bottom:10px}
+.hero p{color:#aaa}
+.container{max-width:1100px;margin:auto;padding:35px 18px}
+.search{
+width:100%;padding:14px;
+background:#151515;border:1px solid #333;
+border-radius:10px;color:white;
+font-size:15px;outline:none;margin-bottom:22px;
+}
+.categories{
+display:flex;gap:9px;flex-wrap:wrap;margin-bottom:23px;
+}
+.category{
+background:#171717;color:#ccc;
+border:1px solid #333;border-radius:20px;
+padding:8px 15px;cursor:pointer;
+}
+.category.active,.category:hover{
+background:#ddd;color:#111;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:16px;
+}
+.card{
+background:#151515;border:1px solid #303030;
+border-radius:13px;padding:19px;
+display:flex;flex-direction:column;
+}
+.card h2{font-size:19px;margin-bottom:8px}
+.card p{color:#aaa;font-size:13px;flex:1}
+.prompt{
+background:#0d0d0d;border:1px solid #292929;
+border-radius:9px;padding:12px;
+color:#ccc;font-size:13px;margin:14px 0;
+}
+.copy{
+background:#ddd;color:#111;border:0;
+padding:11px;border-radius:8px;
+font-weight:bold;cursor:pointer;
+}
+.copy:hover{background:#fff}
+.empty{
+display:none;text-align:center;
+color:#888;padding:30px;
+}
+footer{
+text-align:center;padding:25px;
+border-top:1px solid #292929;
+color:#888;font-size:13px;
+}
+footer a{color:#ccc;text-decoration:none}
+@media(max-width:600px){
+header{flex-direction:column;gap:12px}
+.hero h1{font-size:27px}
+nav a{margin:0 5px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">ALFR3ON WEB BUILDER</div>
+<div class="logo">ALFR3ON</div>
 <nav>
 <a href="index.html">الرئيسية</a>
 <a href="builder.html">إنشاء موقع</a>
-<a href="templates.html">القوالب</a>
-<a href="prompts.html">مكتبة الأوصاف</a>
+<a href="template.html">القوالب</a>
+<a href="dashboard.html">مشاريعي</a>
 </nav>
 </header>
 
 <section class="hero">
-<h1>مكتبة <span>الأوصاف الجاهزة</span></h1>
-<p>اختر وصفًا جاهزًا لموقعك وانسخه أو أرسله إلى صفحة الإنشاء</p>
+<h1>مكتبة الأوصاف الجاهزة</h1>
+<p>اختر وصفًا مناسبًا لمشروعك وانسخه لاستخدامه عند إنشاء موقعك.</p>
 </section>
 
-<div class="search">
-<input type="search" id="search" placeholder="ابحث عن وصف...">
+<main class="container">
+
+<input
+class="search"
+id="search"
+type="search"
+placeholder="ابحث عن وصف أو نوع موقع..."
+>
+
+<div class="categories">
+<button class="category active" data-category="all">الكل</button>
+<button class="category" data-category="store">متاجر</button>
+<button class="category" data-category="business">شركات</button>
+<button class="category" data-category="food">مطاعم</button>
+<button class="category" data-category="personal">شخصي</button>
+<button class="category" data-category="education">تعليم</button>
 </div>
 
-<div class="filters">
-<button class="filter active" data-cat="all">الكل</button>
-<button class="filter" data-cat="business">شركات</button>
-<button class="filter" data-cat="store">متاجر</button>
-<button class="filter" data-cat="education">تعليم</button>
-<button class="filter" data-cat="food">مطاعم</button>
-<button class="filter" data-cat="personal">شخصي</button>
+<section class="grid" id="grid">
+
+<div class="card" data-category="store">
+<h2>متجر ملابس</h2>
+<p>متجر إلكتروني لعرض الملابس والمنتجات بطريقة منظمة.</p>
+<div class="prompt">أنشئ متجر ملابس عصريًا يحتوي على واجهة رئيسية، قسم للمنتجات، صور واضحة، أسعار، وصف لكل منتج، وأزرار للتواصل والطلب.</div>
+<button class="copy">نسخ الوصف</button>
 </div>
 
-<main class="container" id="container">
-<div id="empty">لا توجد نتائج مطابقة.</div>
+<div class="card" data-category="store">
+<h2>متجر إلكترونيات</h2>
+<p>موقع لعرض الأجهزة والإكسسوارات الإلكترونية.</p>
+<div class="prompt">أنشئ متجر إلكترونيات احترافيًا يعرض الهواتف والأجهزة والإكسسوارات، مع تصنيفات واضحة وبطاقات للمنتجات والأسعار ومعلومات التواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="business">
+<h2>شركة خدمات</h2>
+<p>موقع تعريفي لشركة تعرض خدماتها وأعمالها.</p>
+<div class="prompt">أنشئ موقعًا لشركة احترافية يتضمن نبذة عن الشركة، الخدمات، معرض الأعمال، آراء العملاء، ووسائل التواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="business">
+<h2>شركة تصميم</h2>
+<p>واجهة لعرض خدمات التصميم والأعمال السابقة.</p>
+<div class="prompt">أنشئ موقع شركة تصميم جرافيك يحتوي على معرض أعمال، خدمات التصميم، باقات الأسعار، ونموذج لطلب تصميم جديد.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="food">
+<h2>مطعم</h2>
+<p>موقع مطعم لعرض قائمة الطعام والطلبات.</p>
+<div class="prompt">أنشئ موقع مطعم أنيقًا يحتوي على قائمة الطعام، صور الوجبات، الأسعار، نبذة عن المطعم، ومعلومات التواصل والطلب.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="food">
+<h2>كافيه</h2>
+<p>موقع عصري لعرض المشروبات والحلويات.</p>
+<div class="prompt">أنشئ موقع كافيه بتصميم عصري يعرض المشروبات والحلويات والأسعار، مع معرض صور ومعلومات المكان وساعات العمل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="personal">
+<h2>موقع شخصي</h2>
+<p>صفحة شخصية للتعريف بصاحب الموقع.</p>
+<div class="prompt">أنشئ موقعًا شخصيًا احترافيًا يحتوي على صورة شخصية، نبذة تعريفية، المهارات، الأعمال السابقة، وطرق التواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="personal">
+<h2>معرض أعمال</h2>
+<p>موقع لعرض المشاريع والتصميمات.</p>
+<div class="prompt">أنشئ معرض أعمال رقميًا يحتوي على أقسام للمشاريع والتصميمات والصور، مع وصف لكل عمل ووسيلة للتواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="education">
+<h2>منصة تعليمية</h2>
+<p>موقع لعرض الدروس والكورسات التعليمية.</p>
+<div class="prompt">أنشئ منصة تعليمية تحتوي على صفحة رئيسية، قائمة المواد والدورات، صفحات للمدرسين، معلومات عن الدروس، ووسائل التواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="education">
+<h2>مركز تعليمي</h2>
+<p>موقع تعريفي لمركز أو أكاديمية تعليمية.</p>
+<div class="prompt">أنشئ موقعًا لمركز تعليمي يعرض المواد الدراسية والمدرسين والمواعيد والخدمات، مع نموذج للتواصل والاستفسار.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="business">
+<h2>شركة عقارات</h2>
+<p>موقع لعرض العقارات والوحدات المتاحة.</p>
+<div class="prompt">أنشئ موقع شركة عقارات يعرض الوحدات السكنية والتجارية، الصور، التفاصيل، الأسعار، ومعلومات التواصل مع الشركة.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+<div class="card" data-category="store">
+<h2>متجر عطور</h2>
+<p>موقع لعرض العطور والمنتجات المختلفة.</p>
+<div class="prompt">أنشئ متجر عطور أنيقًا يعرض المنتجات مع الصور والوصف والأسعار والتصنيفات، بالإضافة إلى معلومات الطلب والتواصل.</div>
+<button class="copy">نسخ الوصف</button>
+</div>
+
+</section>
+
+<div class="empty" id="empty">لا توجد نتائج مطابقة لبحثك.</div>
+
 </main>
 
-<footer>© ALFR3ON DEZAINER - جميع الحقوق محفوظة</footer>
+<footer>
+<p>© 2026 ALFR3ON WEB BUILDER</p>
+<p>تطوير ALFR3ON DEZAINER</p>
+<a href="index.html">العودة للرئيسية</a>
+</footer>
 
 <script>
-const prompts=[
-["موقع شركة احترافية","business","أنشئ موقع شركة احترافيًا يحتوي على صفحة رئيسية، نبذة عن الشركة، الخدمات، معرض الأعمال، آراء العملاء، وطرق التواصل. اجعل التصميم عصريًا ومتجاوبًا مع جميع الأجهزة."],
-["موقع شركة تقنية","business","أنشئ موقع شركة تقنية يعرض الحلول الرقمية والخدمات التقنية وفريق العمل والمشاريع السابقة ونموذج طلب خدمة."],
-["موقع وكالة تسويق","business","أنشئ موقع وكالة تسويق إلكتروني يعرض خدمات إدارة الحملات والإعلانات والتصميم وصناعة المحتوى مع نماذج من الأعمال."],
-["موقع مكتب عقارات","business","أنشئ موقعًا عقاريًا لعرض الوحدات المتاحة مع الصور والأسعار والمساحات والمواقع ونموذج طلب معاينة."],
-["متجر إلكتروني عام","store","أنشئ متجرًا إلكترونيًا يعرض المنتجات في أقسام منظمة مع البحث والسلة وصفحات تفاصيل المنتجات ووسائل التواصل."],
-["متجر ملابس","store","أنشئ متجر ملابس أنيقًا يعرض الملابس حسب النوع والمقاس واللون مع صور المنتجات والأسعار وتفاصيل الطلب."],
-["متجر إلكترونيات","store","أنشئ متجر إلكترونيات يعرض الهواتف والأجهزة والإكسسوارات مع المواصفات والأسعار والتصنيفات."],
-["متجر عطور","store","أنشئ متجر عطور فاخرًا يعرض المنتجات مع وصف الروائح والأحجام والأسعار وصور جذابة."],
-["أكاديمية تعليمية","education","أنشئ موقع أكاديمية تعليمية يعرض المواد الدراسية والمدرسين والكورسات والمواعيد وطرق التسجيل."],
-["منصة مدرس","education","أنشئ موقعًا لمدرس يحتوي على نبذة تعريفية والدروس والكورسات والمواعيد ونموذج تواصل للطلاب."],
-["منصة دورات","education","أنشئ منصة لعرض الدورات التعليمية مع وصف كل دورة ومستواها ومدتها والمدرب المسؤول عنها."],
-["موقع مكتبة تعليمية","education","أنشئ موقع مكتبة تعليمية لتنظيم الكتب والمذكرات والملفات حسب المادة والصف الدراسي."],
-["موقع مطعم","food","أنشئ موقع مطعم يعرض قائمة الطعام والأسعار والصور ومواعيد العمل وبيانات التواصل."],
-["موقع كافيه","food","أنشئ موقع كافيه بتصميم أنيق يعرض المشروبات والحلويات والعروض ومعلومات المكان."],
-["موقع حلويات","food","أنشئ موقع متجر حلويات يعرض المنتجات والصور والأسعار وخيارات طلب المنتجات."],
-["موقع مصمم جرافيك","personal","أنشئ معرض أعمال لمصمم جرافيك يعرض التصميمات والخدمات ونبذة شخصية ووسائل التواصل."],
-["موقع مصور","personal","أنشئ موقعًا لمصور فوتوغرافي يحتوي على معرض صور مقسم إلى فئات وصفحة تعريفية وبيانات الحجز."],
-["موقع شخصي","personal","أنشئ موقعًا شخصيًا يعرض السيرة الذاتية والمهارات والخبرات والمشاريع وطرق التواصل."],
-["موقع صانع محتوى","personal","أنشئ موقعًا لصانع محتوى يعرض أعماله وروابط منصاته الاجتماعية وأحدث المحتويات ووسائل التواصل."],
-["موقع أخبار","business","أنشئ موقع أخبار يعرض المقالات والتصنيفات والأخبار الحديثة مع صفحة مستقلة لكل مقال."]
-];
-
-const container=document.getElementById("container");
 const search=document.getElementById("search");
-const filters=[...document.querySelectorAll(".filter")];
-let category="all";
+const cards=[...document.querySelectorAll(".card")];
+const categories=[...document.querySelectorAll(".category")];
+const empty=document.getElementById("empty");
+let selected="all";
 
-function render(){
-container.querySelectorAll(".card").forEach(c=>c.remove());
+function filterCards(){
 let count=0;
-prompts.forEach((item,index)=>{
-const [name,cat,description]=item;
-const matchName=name.includes(search.value.trim());
-const matchCat=category==="all"||category===cat;
-if(!matchName||!matchCat)return;
-count++;
-const card=document.createElement("article");
-card.className="card";
-const title=document.createElement("h3");
-title.textContent=name;
-const desc=document.createElement("p");
-desc.textContent=description;
-const tag=document.createElement("span");
-tag.className="tag";
-tag.textContent=cat==="business"?"أعمال":cat==="store"?"متاجر":cat==="education"?"تعليم":cat==="food"?"مطاعم":"شخصي";
-const actions=document.createElement("div");
-actions.className="actions";
-const copy=document.createElement("button");
-copy.className="copy";
-copy.textContent="نسخ الوصف";
-copy.onclick=()=>copyPrompt(description);
-const use=document.createElement("button");
-use.className="use";
-use.textContent="استخدم الوصف";
-use.onclick=()=>usePrompt(description);
-actions.append(copy,use);
-card.append(title,desc,tag,actions);
-container.insertBefore(card,document.getElementById("empty"));
+const word=search.value.trim().toLowerCase();
+
+cards.forEach(card=>{
+const matchesCategory=
+selected==="all"||card.dataset.category===selected;
+const matchesSearch=card.innerText.toLowerCase().includes(word);
+const show=matchesCategory&&matchesSearch;
+
+card.style.display=show?"flex":"none";
+if(show)count++;
 });
-document.getElementById("empty").style.display=count?"none":"block";
+
+empty.style.display=count?"none":"block";
 }
 
-function copyPrompt(text){
-if(navigator.clipboard&&window.isSecureContext){
-navigator.clipboard.writeText(text).then(()=>alert("تم نسخ الوصف"));
-}else{
-const area=document.createElement("textarea");
-area.value=text;
-document.body.appendChild(area);
-area.select();
-document.execCommand("copy");
-area.remove();
-alert("تم نسخ الوصف");
-}
-}
-
-function usePrompt(description){
-window.location.href="builder.html?prompt="+encodeURIComponent(description);
-}
-
-search.addEventListener("input",render);
-filters.forEach(btn=>{
-btn.addEventListener("click",()=>{
-filters.forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-category=btn.dataset.cat;
-render();
+categories.forEach(button=>{
+button.addEventListener("click",()=>{
+categories.forEach(item=>item.classList.remove("active"));
+button.classList.add("active");
+selected=button.dataset.category;
+filterCards();
 });
 });
-render();
+
+search.addEventListener("input",filterCards);
+
+document.querySelectorAll(".copy").forEach(button=>{
+button.addEventListener("click",async()=>{
+const prompt=button.parentElement.querySelector(".prompt").innerText;
+try{
+await navigator.clipboard.writeText(prompt);
+button.innerText="تم النسخ ✓";
+}catch(error){
+button.innerText="تعذر النسخ";
+}
+setTimeout(()=>button.innerText="نسخ الوصف",1800);
+});
+});
 </script>
+
 </body>
 </html>
