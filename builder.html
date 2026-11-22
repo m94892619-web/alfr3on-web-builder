@@ -3,91 +3,81 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ALFR3ON WEB BUILDER</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#08080a;color:#eee;
- font-family:Arial,sans-serif;padding:18px
-}
-header{
- text-align:center;padding:22px;
- border-bottom:1px solid #333;margin-bottom:20px
-}
-header h1{color:#c7c7ce;margin:0 0 8px}
-header p{color:#aaa}
-.container{max-width:850px;margin:auto}
-.panel{
- background:#131317;border:1px solid #333;
- border-radius:14px;padding:18px;margin-bottom:18px
-}
-label{display:block;margin:14px 0 7px}
-input,textarea,select{
- width:100%;padding:13px;border-radius:9px;
- border:1px solid #555;background:#09090c;
- color:white;font-size:15px
-}
-textarea{min-height:130px;resize:vertical}
-button{
- border:1px solid #aaa;border-radius:9px;
- padding:12px 18px;margin:8px 3px;
- cursor:pointer;font-weight:bold;
- background:linear-gradient(#eee,#999);
- color:#111;font-size:14px
-}
-button.dark{background:#292930;color:white;border-color:#555}
-button.red{background:#8e1421;color:white;border-color:#c33}
-iframe{
- width:100%;height:450px;background:white;
- border:1px solid #555;border-radius:10px
-}
-.project{
- padding:12px;border:1px solid #444;
- border-radius:9px;margin:10px 0;
- display:flex;justify-content:space-between;
- align-items:center;gap:8px;flex-wrap:wrap
-}
-.small{color:#aaa;font-size:13px}
+body{margin:0;background:#08080a;color:#eee;font-family:Arial,sans-serif;padding:15px}
+header{text-align:center;padding:20px;border-bottom:1px solid #333;margin-bottom:20px}
+header h1{color:#ccc;margin:0 0 8px}
+.container{max-width:950px;margin:auto}
+.panel{background:#151519;border:1px solid #333;border-radius:13px;padding:18px;margin-bottom:18px}
+label{display:block;margin:13px 0 7px}
+input,textarea,select{width:100%;padding:12px;border-radius:8px;border:1px solid #555;background:#09090c;color:white}
+textarea{min-height:100px}
+input[type=color]{height:45px;padding:4px}
+button{padding:11px 15px;border:1px solid #aaa;border-radius:8px;background:#ddd;color:#111;font-weight:bold;margin:6px 3px;cursor:pointer}
+.dark{background:#292929;color:white;border-color:#555}
+.red{background:#831b25;color:white;border-color:#a33}
+.buttons{display:flex;flex-wrap:wrap;gap:5px}
+#frame{width:100%;height:480px;background:white;border:1px solid #555;border-radius:10px}
+#backgroundPreview,#logoPreview{display:none;width:100%;max-height:180px;object-fit:contain;background:#080808;border-radius:9px;margin-top:12px}
+.note{color:#aaa;font-size:13px}
+.status{color:#bbb;font-size:13px;min-height:20px}
 </style>
 </head>
-
 <body>
+
 <header>
 <h1>ALFR3ON WEB BUILDER</h1>
-<p>منصة إنشاء وإدارة المواقع</p>
+<p>منشئ المواقع وتخصيص الصور والخلفيات</p>
 </header>
 
-<div class="container">
+<main class="container">
 
 <section class="panel">
-<h2>إنشاء مشروع جديد</h2>
+<h2>بيانات الموقع</h2>
 
-<label>اسم المشروع</label>
-<input id="projectName" placeholder="اكتب اسم موقعك">
+<label for="projectName">اسم الموقع</label>
+<input id="projectName" placeholder="اسم الموقع">
 
-<label>وصف الموقع</label>
-<textarea id="description" placeholder="اشرح الموقع الذي تريد إنشاءه..."></textarea>
+<label for="description">وصف الموقع</label>
+<textarea id="description" placeholder="اكتب وصف موقعك"></textarea>
 
-<label>لون الموقع</label>
-<select id="siteColor">
-<option value="#111827">أزرق داكن</option>
-<option value="#111111">أسود</option>
-<option value="#8b0000">أحمر</option>
-<option value="#17452d">أخضر</option>
-<option value="#563080">بنفسجي</option>
-</select>
+<label for="siteColor">لون الموقع الأساسي</label>
+<input type="color" id="siteColor" value="#111827">
 
+<label for="backgroundFile">رفع صورة خلفية من جهازك</label>
+<input type="file" id="backgroundFile" accept="image/*">
+<img id="backgroundPreview" alt="معاينة الخلفية">
+
+<div class="buttons">
+<button class="dark" onclick="removeBackground()">إزالة الخلفية</button>
+</div>
+
+<label for="logoFile">رفع شعار الموقع</label>
+<input type="file" id="logoFile" accept="image/*">
+<img id="logoPreview" alt="معاينة الشعار">
+
+<div class="buttons">
+<button class="dark" onclick="removeLogo()">إزالة الشعار</button>
+</div>
+
+<p class="note">الصور تُحفظ داخل بيانات المشروع محليًا، وقد تحتاج لتقليل حجمها إذا كانت كبيرة.</p>
+
+<div class="buttons">
 <button onclick="generateSite()">إنشاء معاينة</button>
-<button class="dark" onclick="saveProject()">حفظ المشروع</button>
+<button onclick="saveProject()">حفظ المشروع</button>
 <button class="dark" onclick="newProject()">مشروع جديد</button>
+<button class="dark" onclick="downloadSite()">تنزيل الموقع</button>
+</div>
+
+<p class="status" id="status"></p>
 </section>
 
 <section class="panel">
 <h2>معاينة الموقع</h2>
-<iframe id="preview"></iframe>
-<button onclick="downloadSite()">تنزيل ملف الموقع</button>
+<iframe id="preview" title="معاينة الموقع" sandbox="allow-scripts"></iframe>
 </section>
 
 <section class="panel">
@@ -95,198 +85,294 @@ iframe{
 <div id="projectsList"></div>
 </section>
 
-</div>
+</main>
 
 <script>
-const STORAGE_KEY = "alfr3on_projects";
-let currentId = null;
-let currentHTML = "";
+const KEY="alfr3on_projects";
+let currentId=null;
+let currentHTML="";
+let backgroundData="";
+let logoData="";
+
+const $=id=>document.getElementById(id);
 
 function getProjects(){
- try{
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
- }catch(e){return []}
+try{
+const data=JSON.parse(localStorage.getItem(KEY)||"[]");
+return Array.isArray(data)?data:[];
+}catch(e){return []}
+}
+
+function setStatus(message){
+$("status").textContent=message;
 }
 
 function makeId(){
- return Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+return Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+}
+
+function escapeHTML(value){
+return String(value).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function readImage(file,callback){
+if(!file)return;
+if(!file.type.startsWith("image/")){
+setStatus("اختر ملف صورة صالحًا.");
+return;
+}
+if(file.size>3*1024*1024){
+setStatus("حجم الصورة أكبر من 3 ميجابايت. اختر صورة أصغر.");
+return;
+}
+const reader=new FileReader();
+reader.onload=()=>{
+callback(reader.result);
+};
+reader.onerror=()=>setStatus("تعذر قراءة الصورة.");
+reader.readAsDataURL(file);
+}
+
+$("backgroundFile").addEventListener("change",function(){
+readImage(this.files[0],data=>{
+backgroundData=data;
+$("backgroundPreview").src=data;
+$("backgroundPreview").style.display="block";
+setStatus("تم اختيار صورة الخلفية.");
+});
+});
+
+$("logoFile").addEventListener("change",function(){
+readImage(this.files[0],data=>{
+logoData=data;
+$("logoPreview").src=data;
+$("logoPreview").style.display="block";
+setStatus("تم اختيار شعار الموقع.");
+});
+});
+
+function removeBackground(){
+backgroundData="";
+$("backgroundFile").value="";
+$("backgroundPreview").src="";
+$("backgroundPreview").style.display="none";
+setStatus("تمت إزالة الخلفية.");
+}
+
+function removeLogo(){
+logoData="";
+$("logoFile").value="";
+$("logoPreview").src="";
+$("logoPreview").style.display="none";
+setStatus("تمت إزالة الشعار.");
 }
 
 function generateSite(){
- const name=document.getElementById("projectName").value.trim();
- const desc=document.getElementById("description").value.trim();
- const color=document.getElementById("siteColor").value;
+const name=$("projectName").value.trim();
+const desc=$("description").value.trim();
+const color=$("siteColor").value;
 
- if(!name || !desc){
-  alert("اكتب اسم المشروع ووصف الموقع أولاً");
-  return;
- }
+if(!name||!desc){
+setStatus("اكتب اسم الموقع والوصف أولًا.");
+return;
+}
 
- currentHTML=`<!DOCTYPE html>
+const safeName=escapeHTML(name);
+const safeDesc=escapeHTML(desc).replace(/\n/g,"<br>");
+const safeBackground=backgroundData;
+const safeLogo=logoData;
+
+const backgroundStyle=safeBackground
+?"background-image:linear-gradient(#0008,#0008),url('"+safeBackground+"');background-size:cover;background-position:center;"
+:"background:"+color+";";
+
+currentHTML=`<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHTML(name)}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${safeName}</title>
 <style>
-body{margin:0;font-family:Arial;background:${color};color:white;text-align:center}
-header{padding:65px 15px}
-h1{font-size:38px}
-p{font-size:19px;line-height:1.9}
-main{max-width:750px;margin:auto;padding:20px}
-footer{padding:25px;background:#0005}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#eee;color:#222}
+header{min-height:350px;padding:40px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;${backgroundStyle}}
+header img{width:100px;height:100px;object-fit:contain;margin-bottom:15px}
+h1{font-size:35px}
+main{max-width:800px;margin:30px auto;padding:25px}
+.content{background:white;padding:25px;border-radius:12px;text-align:center;line-height:2}
+footer{text-align:center;padding:25px;color:#777}
 </style>
 </head>
 <body>
 <header>
-<h1>${escapeHTML(name)}</h1>
-<p>${escapeHTML(desc).replace(/\n/g,"<br>")}</p>
+${safeLogo?'<img src="'+safeLogo+'" alt="شعار الموقع">':""}
+<h1>${safeName}</h1>
+<p>${safeDesc}</p>
 </header>
 <main>
-<h2>مرحباً بك</h2>
-<p>هذا موقعك المبدئي. يمكنك تطويره وإضافة الأقسام والصور والروابط لاحقاً.</p>
+<section class="content">
+<h2>مرحبًا بك</h2>
+<p>اكتشف خدماتنا ومحتويات موقعنا.</p>
+</section>
 </main>
-<footer>تم الإنشاء بواسطة ALFR3ON WEB BUILDER</footer>
+<footer>تم الإنشاء بواسطة ALFR3ON</footer>
 </body>
 </html>`;
 
- document.getElementById("preview").srcdoc=currentHTML;
-}
-
-function escapeHTML(value){
- return value.replace(/[&<>"']/g,function(c){
-  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
- });
+$("preview").srcdoc=currentHTML;
+setStatus("تم إنشاء المعاينة.");
 }
 
 function saveProject(){
- const name=document.getElementById("projectName").value.trim();
- const desc=document.getElementById("description").value.trim();
+if(!$("projectName").value.trim()||!$("description").value.trim()){
+setStatus("اكتب اسم الموقع والوصف أولًا.");
+return;
+}
+if(!currentHTML)generateSite();
+if(!currentHTML)return;
 
- if(!name || !desc){
-  alert("اكتب اسم المشروع والوصف");
-  return;
- }
+const projects=getProjects();
+const project={
+id:currentId||makeId(),
+name:$("projectName").value.trim(),
+description:$("description").value.trim(),
+prompt:$("description").value.trim(),
+html:currentHTML,
+code:currentHTML,
+color:$("siteColor").value,
+background:backgroundData,
+logo:logoData,
+timestamp:new Date().toISOString()
+};
 
- if(!currentHTML) generateSite();
- if(!currentHTML) return;
+const index=projects.findIndex(p=>String(p.id)===String(project.id));
+if(index>=0)projects[index]={...projects[index],...project};
+else projects.push(project);
 
- let projects=getProjects();
- const now=new Date().toISOString();
-
- if(currentId){
-  const index=projects.findIndex(p=>p.id===currentId);
-  if(index!==-1){
-   projects[index]={...projects[index],name,prompt:desc,html:currentHTML,timestamp:now};
-  }else{
-   projects.push({id:currentId,name,prompt:desc,html:currentHTML,timestamp:now});
-  }
- }else{
-  currentId=makeId();
-  projects.push({id:currentId,name,prompt:desc,html:currentHTML,timestamp:now});
- }
-
- localStorage.setItem(STORAGE_KEY,JSON.stringify(projects));
- renderProjects();
- alert("تم حفظ المشروع على هذا الجهاز");
+try{
+localStorage.setItem(KEY,JSON.stringify(projects));
+currentId=project.id;
+renderProjects();
+setStatus("تم حفظ المشروع والصور محليًا.");
+}catch(e){
+setStatus("تعذر الحفظ. قد تكون مساحة التخزين ممتلئة بسبب الصور.");
+}
 }
 
 function renderProjects(){
- const list=document.getElementById("projectsList");
- const projects=getProjects();
+const list=$("projectsList");
+list.innerHTML="";
+const projects=getProjects();
 
- if(!projects.length){
-  list.innerHTML="<p class='small'>لا توجد مشاريع محفوظة حتى الآن</p>";
-  return;
- }
+if(!projects.length){
+list.textContent="لا توجد مشاريع محفوظة.";
+return;
+}
 
- list.innerHTML="";
- projects.forEach(p=>{
-  const div=document.createElement("div");
-  div.className="project";
+projects.forEach(p=>{
+const row=document.createElement("div");
+row.style.cssText="padding:12px;border-bottom:1px solid #444;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap";
 
-  const info=document.createElement("div");
-  const title=document.createElement("strong");
-  title.textContent=p.name;
-  const date=document.createElement("div");
-  date.className="small";
-  date.textContent=p.timestamp ? new Date(p.timestamp).toLocaleString("ar-EG") : "";
-  info.append(title,date);
+const title=document.createElement("strong");
+title.textContent=p.name||"مشروع بدون اسم";
 
-  const actions=document.createElement("div");
-  const open=document.createElement("button");
-  open.className="dark";
-  open.textContent="فتح";
-  open.onclick=()=>openProject(p.id);
+const actions=document.createElement("div");
 
-  const del=document.createElement("button");
-  del.className="red";
-  del.textContent="حذف";
-  del.onclick=()=>deleteProject(p.id);
+const open=document.createElement("button");
+open.textContent="فتح";
+open.className="dark";
+open.onclick=()=>openProject(p.id);
 
-  actions.append(open,del);
-  div.append(info,actions);
-  list.append(div);
- });
+const del=document.createElement("button");
+del.textContent="حذف";
+del.className="red";
+del.onclick=()=>deleteProject(p.id);
+
+const view=document.createElement("button");
+view.textContent="معاينة";
+view.className="dark";
+view.onclick=()=>location.href="preview.html?project="+encodeURIComponent(p.id);
+
+actions.append(open,view,del);
+row.append(title,actions);
+list.append(row);
+});
 }
 
 function openProject(id){
- const p=getProjects().find(x=>x.id===id);
- if(!p)return;
+const p=getProjects().find(x=>String(x.id)===String(id));
+if(!p)return;
 
- currentId=p.id;
- currentHTML=p.html || "";
- document.getElementById("projectName").value=p.name || "";
- document.getElementById("description").value=p.prompt || "";
- document.getElementById("preview").srcdoc=currentHTML;
- window.scrollTo({top:0,behavior:"smooth"});
+currentId=p.id;
+currentHTML=p.html||p.code||"";
+backgroundData=p.background||"";
+logoData=p.logo||"";
+
+$("projectName").value=p.name||"";
+$("description").value=p.description||p.prompt||"";
+$("siteColor").value=p.color||"#111827";
+
+$("backgroundPreview").src=backgroundData;
+$("backgroundPreview").style.display=backgroundData?"block":"none";
+$("logoPreview").src=logoData;
+$("logoPreview").style.display=logoData?"block":"none";
+$("preview").srcdoc=currentHTML;
+
+setStatus("تم فتح المشروع.");
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function deleteProject(id){
- if(!confirm("هل تريد حذف المشروع؟"))return;
-
- const projects=getProjects().filter(p=>p.id!==id);
- localStorage.setItem(STORAGE_KEY,JSON.stringify(projects));
-
- if(currentId===id)newProject();
- renderProjects();
+if(!confirm("هل تريد حذف المشروع؟"))return;
+localStorage.setItem(KEY,JSON.stringify(getProjects().filter(p=>String(p.id)!==String(id))));
+if(String(currentId)===String(id))newProject();
+renderProjects();
+setStatus("تم حذف المشروع.");
 }
 
 function newProject(){
- currentId=null;
- currentHTML="";
- document.getElementById("projectName").value="";
- document.getElementById("description").value="";
- document.getElementById("preview").srcdoc="";
+currentId=null;
+currentHTML="";
+backgroundData="";
+logoData="";
+$("projectName").value="";
+$("description").value="";
+$("siteColor").value="#111827";
+$("backgroundFile").value="";
+$("logoFile").value="";
+$("backgroundPreview").style.display="none";
+$("logoPreview").style.display="none";
+$("preview").srcdoc="";
+setStatus("مشروع جديد جاهز.");
 }
 
 function downloadSite(){
- if(!currentHTML){
-  alert("أنشئ معاينة الموقع أولاً");
-  return;
- }
- const blob=new Blob([currentHTML],{type:"text/html;charset=utf-8"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;
- a.download="alfr3on-website.html";
- a.click();
- URL.revokeObjectURL(url);
+if(!currentHTML){
+setStatus("أنشئ معاينة الموقع أولًا.");
+return;
+}
+const blob=new Blob([currentHTML],{type:"text/html;charset=utf-8"});
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");
+a.href=url;
+a.download="alfr3on-website.html";
+a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
 function loadFromAddress(){
- const params=new URLSearchParams(location.search);
- const projectId=params.get("project");
- const template=params.get("template");
- const prompt=params.get("prompt");
+const params=new URLSearchParams(location.search);
+const id=params.get("project");
+const template=params.get("template");
+const prompt=params.get("prompt");
 
- if(projectId){
-  openProject(projectId);
- }else if(template){
-  document.getElementById("projectName").value=template;
- }else if(prompt){
-  document.getElementById("description").value=prompt;
- }
+if(id)openProject(id);
+else{
+if(template)$("projectName").value=template;
+if(prompt)$("description").value=prompt;
+}
 }
 
 renderProjects();
