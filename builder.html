@@ -20,10 +20,14 @@ button{padding:11px 15px;border:1px solid #aaa;border-radius:8px;background:#ddd
 .dark{background:#292929;color:white;border-color:#555}
 .red{background:#831b25;color:white;border-color:#a33}
 .buttons{display:flex;flex-wrap:wrap;gap:5px}
-#frame{width:100%;height:480px;background:white;border:1px solid #555;border-radius:10px}
+#preview{width:100%;height:480px;background:white;border:1px solid #555;border-radius:10px}
 #backgroundPreview,#logoPreview{display:none;width:100%;max-height:180px;object-fit:contain;background:#080808;border-radius:9px;margin-top:12px}
 .note{color:#aaa;font-size:13px}
 .status{color:#bbb;font-size:13px;min-height:20px}
+.gallery-editor{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:15px}
+.image-card{background:#09090c;border:1px solid #444;border-radius:9px;padding:7px;text-align:center}
+.image-card img{width:100%;height:100px;object-fit:cover;border-radius:6px}
+.image-card button{width:100%;margin:7px 0 0;padding:7px}
 </style>
 </head>
 <body>
@@ -63,7 +67,19 @@ button{padding:11px 15px;border:1px solid #aaa;border-radius:8px;background:#ddd
 <button class="dark" onclick="removeLogo()">إزالة الشعار</button>
 </div>
 
-<p class="note">الصور تُحفظ داخل بيانات المشروع محليًا، وقد تحتاج لتقليل حجمها إذا كانت كبيرة.</p>
+<hr style="border-color:#333;margin:22px 0">
+
+<h2>صور المنتجات والخدمات</h2>
+<p class="note">أضف صورًا تظهر داخل الموقع الذي تنشئه، مثل صور المنتجات أو الخدمات أو الأعمال.</p>
+
+<label for="contentImages">اختيار صور المحتوى</label>
+<input type="file" id="contentImages" accept="image/*" multiple>
+
+<p class="note">الحد الأقصى 5 صور، وحجم الصورة الواحدة 1 ميجابايت.</p>
+
+<div id="contentImagesPreview" class="gallery-editor"></div>
+
+<p class="note">الصور تُحفظ محليًا مع المشروع. لا تُرفع إلى الإنترنت أو إلى قاعدة بيانات في هذه المرحلة.</p>
 
 <div class="buttons">
 <button onclick="generateSite()">إنشاء معاينة</button>
@@ -89,10 +105,12 @@ button{padding:11px 15px;border:1px solid #aaa;border-radius:8px;background:#ddd
 
 <script>
 const KEY="alfr3on_projects";
+
 let currentId=null;
 let currentHTML="";
 let backgroundData="";
 let logoData="";
+let contentImages=[];
 
 const $=id=>document.getElementById(id);
 
@@ -113,25 +131,37 @@ return Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
 function escapeHTML(value){
 return String(value).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
 }[c]));
 }
 
-function readImage(file,callback){
+function readImage(file,callback,maxSize=3*1024*1024){
 if(!file)return;
+
 if(!file.type.startsWith("image/")){
 setStatus("اختر ملف صورة صالحًا.");
 return;
 }
-if(file.size>3*1024*1024){
-setStatus("حجم الصورة أكبر من 3 ميجابايت. اختر صورة أصغر.");
+
+if(file.size>maxSize){
+setStatus("حجم الصورة أكبر من الحد المسموح.");
 return;
 }
+
 const reader=new FileReader();
+
 reader.onload=()=>{
 callback(reader.result);
 };
-reader.onerror=()=>setStatus("تعذر قراءة الصورة.");
+
+reader.onerror=()=>{
+setStatus("تعذر قراءة الصورة.");
+};
+
 reader.readAsDataURL(file);
 }
 
@@ -140,6 +170,7 @@ readImage(this.files[0],data=>{
 backgroundData=data;
 $("backgroundPreview").src=data;
 $("backgroundPreview").style.display="block";
+currentHTML="";
 setStatus("تم اختيار صورة الخلفية.");
 });
 });
@@ -149,15 +180,83 @@ readImage(this.files[0],data=>{
 logoData=data;
 $("logoPreview").src=data;
 $("logoPreview").style.display="block";
+currentHTML="";
 setStatus("تم اختيار شعار الموقع.");
 });
 });
+
+$("contentImages").addEventListener("change",async function(){
+const files=Array.from(this.files||[]);
+
+if(contentImages.length+files.length>5){
+setStatus("يمكنك إضافة 5 صور فقط للمحتوى.");
+this.value="";
+return;
+}
+
+const validFiles=files.filter(file=>{
+if(!file.type.startsWith("image/")){
+setStatus("تم تجاهل ملف ليس صورة.");
+return false;
+}
+
+if(file.size>1024*1024){
+setStatus("تم تجاهل صورة أكبر من 1 ميجابايت.");
+return false;
+}
+
+return true;
+});
+
+for(const file of validFiles){
+const result=await new Promise(resolve=>{
+readImage(file,resolve,1024*1024);
+});
+
+if(result){
+contentImages.push(result);
+}
+}
+
+this.value="";
+renderContentImages();
+currentHTML="";
+setStatus("تمت إضافة الصور للمحتوى.");
+});
+
+function renderContentImages(){
+const box=$("contentImagesPreview");
+box.innerHTML="";
+
+contentImages.forEach((src,index)=>{
+const card=document.createElement("div");
+card.className="image-card";
+
+const img=document.createElement("img");
+img.src=src;
+img.alt="صورة محتوى "+(index+1);
+
+const btn=document.createElement("button");
+btn.className="red";
+btn.textContent="حذف الصورة";
+btn.onclick=()=>{
+contentImages.splice(index,1);
+renderContentImages();
+currentHTML="";
+setStatus("تم حذف الصورة.");
+};
+
+card.append(img,btn);
+box.append(card);
+});
+}
 
 function removeBackground(){
 backgroundData="";
 $("backgroundFile").value="";
 $("backgroundPreview").src="";
 $("backgroundPreview").style.display="none";
+currentHTML="";
 setStatus("تمت إزالة الخلفية.");
 }
 
@@ -166,6 +265,7 @@ logoData="";
 $("logoFile").value="";
 $("logoPreview").src="";
 $("logoPreview").style.display="none";
+currentHTML="";
 setStatus("تمت إزالة الشعار.");
 }
 
@@ -181,12 +281,18 @@ return;
 
 const safeName=escapeHTML(name);
 const safeDesc=escapeHTML(desc).replace(/\n/g,"<br>");
-const safeBackground=backgroundData;
-const safeLogo=logoData;
 
-const backgroundStyle=safeBackground
-?"background-image:linear-gradient(#0008,#0008),url('"+safeBackground+"');background-size:cover;background-position:center;"
+const backgroundStyle=backgroundData
+?"background-image:linear-gradient(#0008,#0008),url('"+backgroundData+"');background-size:cover;background-position:center;"
 :"background:"+color+";";
+
+const galleryHTML=contentImages.length
+?contentImages.map((src,index)=>`
+<div class="gallery-item">
+<img src="${src}" alt="صورة ${index+1}">
+</div>
+`).join("")
+:`<p>لم تتم إضافة صور حتى الآن.</p>`;
 
 currentHTML=`<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -194,35 +300,113 @@ currentHTML=`<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${safeName}</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#eee;color:#222}
-header{min-height:350px;padding:40px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;${backgroundStyle}}
-header img{width:100px;height:100px;object-fit:contain;margin-bottom:15px}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#eee;
+color:#222;
+}
+
+header{
+min-height:350px;
+padding:40px 20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+${backgroundStyle}
+}
+
+header img{
+width:100px;
+height:100px;
+object-fit:contain;
+margin-bottom:15px;
+}
+
 h1{font-size:35px}
-main{max-width:800px;margin:30px auto;padding:25px}
-.content{background:white;padding:25px;border-radius:12px;text-align:center;line-height:2}
-footer{text-align:center;padding:25px;color:#777}
+
+main{
+max-width:1000px;
+margin:30px auto;
+padding:20px;
+}
+
+.content{
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:center;
+line-height:2;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-top:25px;
+}
+
+.gallery-item{
+background:white;
+padding:10px;
+border-radius:12px;
+box-shadow:0 3px 12px #0001;
+}
+
+.gallery-item img{
+width:100%;
+height:230px;
+object-fit:cover;
+border-radius:8px;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+}
+
 </style>
 </head>
+
 <body>
+
 <header>
-${safeLogo?'<img src="'+safeLogo+'" alt="شعار الموقع">':""}
+${logoData?'<img src="'+logoData+'" alt="شعار الموقع">':""}
 <h1>${safeName}</h1>
 <p>${safeDesc}</p>
 </header>
+
 <main>
+
 <section class="content">
 <h2>مرحبًا بك</h2>
 <p>اكتشف خدماتنا ومحتويات موقعنا.</p>
 </section>
+
+<section>
+<h2 style="text-align:center;margin-top:35px">معرض الصور والمنتجات</h2>
+<div class="gallery">
+${galleryHTML}
+</div>
+</section>
+
 </main>
+
 <footer>تم الإنشاء بواسطة ALFR3ON</footer>
+
 </body>
 </html>`;
 
 $("preview").srcdoc=currentHTML;
-setStatus("تم إنشاء المعاينة.");
+setStatus("تم إنشاء المعاينة بالصور.");
 }
 
 function saveProject(){
@@ -230,10 +414,12 @@ if(!$("projectName").value.trim()||!$("description").value.trim()){
 setStatus("اكتب اسم الموقع والوصف أولًا.");
 return;
 }
+
 if(!currentHTML)generateSite();
 if(!currentHTML)return;
 
 const projects=getProjects();
+
 const project={
 id:currentId||makeId(),
 name:$("projectName").value.trim(),
@@ -244,12 +430,17 @@ code:currentHTML,
 color:$("siteColor").value,
 background:backgroundData,
 logo:logoData,
+contentImages:contentImages,
 timestamp:new Date().toISOString()
 };
 
 const index=projects.findIndex(p=>String(p.id)===String(project.id));
-if(index>=0)projects[index]={...projects[index],...project};
-else projects.push(project);
+
+if(index>=0){
+projects[index]={...projects[index],...project};
+}else{
+projects.push(project);
+}
 
 try{
 localStorage.setItem(KEY,JSON.stringify(projects));
@@ -257,13 +448,14 @@ currentId=project.id;
 renderProjects();
 setStatus("تم حفظ المشروع والصور محليًا.");
 }catch(e){
-setStatus("تعذر الحفظ. قد تكون مساحة التخزين ممتلئة بسبب الصور.");
+setStatus("تعذر الحفظ. مساحة التخزين قد تكون ممتلئة بسبب الصور. قلل أحجامها أو احذف بعض المشاريع.");
 }
 }
 
 function renderProjects(){
 const list=$("projectsList");
 list.innerHTML="";
+
 const projects=getProjects();
 
 if(!projects.length){
@@ -273,6 +465,7 @@ return;
 
 projects.forEach(p=>{
 const row=document.createElement("div");
+
 row.style.cssText="padding:12px;border-bottom:1px solid #444;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap";
 
 const title=document.createElement("strong");
@@ -309,6 +502,7 @@ currentId=p.id;
 currentHTML=p.html||p.code||"";
 backgroundData=p.background||"";
 logoData=p.logo||"";
+contentImages=Array.isArray(p.contentImages)?p.contentImages:[];
 
 $("projectName").value=p.name||"";
 $("description").value=p.description||p.prompt||"";
@@ -316,18 +510,34 @@ $("siteColor").value=p.color||"#111827";
 
 $("backgroundPreview").src=backgroundData;
 $("backgroundPreview").style.display=backgroundData?"block":"none";
+
 $("logoPreview").src=logoData;
 $("logoPreview").style.display=logoData?"block":"none";
+
+renderContentImages();
+
 $("preview").srcdoc=currentHTML;
 
-setStatus("تم فتح المشروع.");
+$("backgroundFile").value="";
+$("logoFile").value="";
+$("contentImages").value="";
+
+setStatus("تم فتح المشروع واسترجاع صوره.");
 window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function deleteProject(id){
 if(!confirm("هل تريد حذف المشروع؟"))return;
-localStorage.setItem(KEY,JSON.stringify(getProjects().filter(p=>String(p.id)!==String(id))));
-if(String(currentId)===String(id))newProject();
+
+localStorage.setItem(
+KEY,
+JSON.stringify(getProjects().filter(p=>String(p.id)!==String(id)))
+);
+
+if(String(currentId)===String(id)){
+newProject();
+}
+
 renderProjects();
 setStatus("تم حذف المشروع.");
 }
@@ -337,39 +547,60 @@ currentId=null;
 currentHTML="";
 backgroundData="";
 logoData="";
+contentImages=[];
+
 $("projectName").value="";
 $("description").value="";
 $("siteColor").value="#111827";
+
 $("backgroundFile").value="";
 $("logoFile").value="";
+$("contentImages").value="";
+
+$("backgroundPreview").src="";
 $("backgroundPreview").style.display="none";
+
+$("logoPreview").src="";
 $("logoPreview").style.display="none";
+
+renderContentImages();
+
 $("preview").srcdoc="";
 setStatus("مشروع جديد جاهز.");
 }
 
 function downloadSite(){
 if(!currentHTML){
-setStatus("أنشئ معاينة الموقع أولًا.");
-return;
+generateSite();
 }
-const blob=new Blob([currentHTML],{type:"text/html;charset=utf-8"});
+
+if(!currentHTML)return;
+
+const blob=new Blob(
+[currentHTML],
+{type:"text/html;charset=utf-8"}
+);
+
 const url=URL.createObjectURL(blob);
 const a=document.createElement("a");
+
 a.href=url;
 a.download="alfr3on-website.html";
 a.click();
+
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
 function loadFromAddress(){
 const params=new URLSearchParams(location.search);
+
 const id=params.get("project");
 const template=params.get("template");
 const prompt=params.get("prompt");
 
-if(id)openProject(id);
-else{
+if(id){
+openProject(id);
+}else{
 if(template)$("projectName").value=template;
 if(prompt)$("description").value=prompt;
 }
@@ -377,6 +608,7 @@ if(prompt)$("description").value=prompt;
 
 renderProjects();
 loadFromAddress();
+
 </script>
 </body>
 </html>
