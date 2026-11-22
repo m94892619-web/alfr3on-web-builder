@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="ALFR3ON WEB BUILDER - منصتك لإنشاء المواقع الإلكترونية وتخصيصها.">
 <title>ALFR3ON WEB BUILDER</title>
 
 <style>
@@ -14,6 +16,9 @@
   --dark: #050505;
   --silver: #c0c0c0;
   --silver-light: #f2f2f2;
+  --main: #c0c0c0;
+  --accent: #a60012;
+  --bg: #050505;
 }
 
 * {
@@ -22,13 +27,16 @@
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: var(--dark);
+  background: var(--bg);
   color: white;
   font-family: 'Cairo', Arial, sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 body::before {
@@ -63,7 +71,7 @@ header {
   flex-wrap: wrap;
   gap: 12px;
   background: rgba(0,0,0,.94);
-  border-bottom: 2px solid var(--silver);
+  border-bottom: 2px solid var(--main);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -75,7 +83,9 @@ header {
   font-weight: 900;
 }
 
-.logo span { color: var(--red); }
+.logo span {
+  color: var(--red);
+}
 
 nav {
   display: flex;
@@ -91,7 +101,9 @@ nav a {
   transition: .3s;
 }
 
-nav a:hover { color: var(--silver); }
+nav a:hover {
+  color: var(--silver);
+}
 
 .login {
   padding: 8px 16px;
@@ -186,7 +198,9 @@ nav a:hover { color: var(--silver); }
   margin-bottom: 35px;
 }
 
-.section h2 span { color: var(--silver); }
+.section h2 span {
+  color: var(--silver);
+}
 
 /* CARDS */
 
@@ -199,7 +213,7 @@ nav a:hover { color: var(--silver); }
 .card {
   background: rgba(10,10,10,.9);
   border: 1px solid #555;
-  border-bottom: 3px solid var(--silver);
+  border-bottom: 3px solid var(--main);
   padding: 28px 15px;
   border-radius: 15px;
   transition: .4s;
@@ -217,7 +231,9 @@ nav a:hover { color: var(--silver); }
   color: var(--silver);
 }
 
-.card h3 { margin: 12px 0; }
+.card h3 {
+  margin: 12px 0;
+}
 
 .card p {
   color: #aaa;
@@ -260,7 +276,9 @@ nav a:hover { color: var(--silver); }
   border-bottom: 1px solid var(--silver);
 }
 
-.cta h2 { font-size: 30px; }
+.cta h2 {
+  font-size: 30px;
+}
 
 .cta p {
   color: #bbb;
@@ -277,7 +295,9 @@ footer {
   color: #aaa;
 }
 
-footer strong { color: var(--silver); }
+footer strong {
+  color: var(--silver);
+}
 
 .footer-links {
   display: flex;
@@ -293,19 +313,29 @@ footer strong { color: var(--silver); }
   font-size: 13px;
 }
 
-.footer-links a:hover { color: white; }
+.footer-links a:hover {
+  color: white;
+}
 
 /* ANIMATION */
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* MOBILE */
 
 @media(max-width:800px) {
-  header { justify-content: center; }
+  header {
+    justify-content: center;
+  }
 
   nav {
     width: 100%;
@@ -313,7 +343,9 @@ footer strong { color: var(--silver); }
     gap: 12px;
   }
 
-  nav a { font-size: 12px; }
+  nav a {
+    font-size: 12px;
+  }
 
   .hero {
     min-height: 540px;
@@ -322,9 +354,13 @@ footer strong { color: var(--silver); }
     justify-content: center;
   }
 
-  .hero p { font-size: 16px; }
+  .hero p {
+    font-size: 16px;
+  }
 
-  .buttons { justify-content: center; }
+  .buttons {
+    justify-content: center;
+  }
 
   .cards {
     grid-template-columns: repeat(2,1fr);
@@ -333,7 +369,33 @@ footer strong { color: var(--silver); }
 }
 
 @media(max-width:380px) {
-  .cards { grid-template-columns: 1fr; }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+button,
+.btn,
+input[type="submit"] {
+  border-color: var(--main);
+}
+
+button {
+  transition: .25s ease;
+}
+
+button:hover,
+.btn:hover {
+  filter: brightness(1.2);
+}
+
+a {
+  transition: .2s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
 }
 </style>
 </head>
@@ -351,7 +413,7 @@ footer strong { color: var(--silver); }
   <nav>
     <a href="index.html">الرئيسية</a>
     <a href="builder.html">إنشاء موقع</a>
-    <a href="templates.html">القوالب</a>
+    <a href="template.html">القوالب</a>
     <a href="prompts.html">الأوصاف</a>
     <a href="dashboard.html">مشاريعي</a>
     <a href="support.html">الدعم</a>
@@ -422,7 +484,7 @@ footer strong { color: var(--silver); }
 
   <div class="quick-links">
     <a href="builder.html">🚀 إنشاء موقع</a>
-    <a href="templates.html">🎨 معرض القوالب</a>
+    <a href="template.html">🎨 معرض القوالب</a>
     <a href="prompts.html">✍️ مكتبة الأوصاف</a>
     <a href="dashboard.html">📁 مشاريعي</a>
     <a href="settings.html">⚙️ الإعدادات</a>
@@ -447,7 +509,7 @@ footer strong { color: var(--silver); }
     <a href="about.html">من نحن</a>
     <a href="support.html">الدعم الفني</a>
     <a href="faq.html">الأسئلة الشائعة</a>
-    <a href="terms.html">الشروط والأحكام</a>
+    <a href="therms.html">الشروط والأحكام</a>
     <a href="privacy.html">سياسة الخصوصية</a>
     <a href="settings.html">الإعدادات</a>
   </div>
@@ -456,50 +518,30 @@ footer strong { color: var(--silver); }
   <p style="margin-top:15px">© 2026 جميع الحقوق محفوظة</p>
 </footer>
 
-<style>
-/* ALFR3ON Global Theme */
-body {
-  background-color: var(--bg, #08090d) !important;
-}
-
-button, .btn, input[type="submit"] {
-  border-color: var(--main, #bfc3c9);
-}
-
-button {
-  transition: .25s ease;
-}
-
-button:hover, .btn:hover {
-  filter: brightness(1.2);
-}
-
-a {
-  transition: .2s ease;
-}
-
-::selection {
-  background: var(--accent, #b90020);
-  color: white;
-}
-</style>
-
 <script>
 (function () {
   try {
     const saved = JSON.parse(
-      localStorage.getItem("alfr3on_theme")
+      localStorage.getItem("alfr3on_theme") || "null"
     );
 
     if (!saved) return;
 
     const root = document.documentElement;
 
-    root.style.setProperty("--main", saved.main);
-    root.style.setProperty("--accent", saved.accent);
-    root.style.setProperty("--bg", saved.bg);
+    if (saved.main) {
+      root.style.setProperty("--main", saved.main);
+    }
 
-    document.body.style.backgroundColor = saved.bg;
+    if (saved.accent) {
+      root.style.setProperty("--accent", saved.accent);
+    }
+
+    if (saved.bg) {
+      root.style.setProperty("--bg", saved.bg);
+      document.body.style.backgroundColor = saved.bg;
+    }
+
   } catch (error) {
     console.error("Theme loading error:", error);
   }
