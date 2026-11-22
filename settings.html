@@ -4,188 +4,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALFR3ON - Settings</title>
+<title>الإعدادات | ALFR3ON WEB BUILDER</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-padding:20px;
-background:#080808;
-color:white;
-font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.container{
-max-width:750px;
-margin:auto;
+body {
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,.86),rgba(0,0,0,.92)),
+    url("wolf-bg.jpg") center/cover fixed,
+    #08090d;
+  color: white;
+  min-height: 100vh;
 }
 
-header{
-text-align:center;
-padding:25px;
+header {
+  padding: 20px 5%;
+  background: rgba(0,0,0,.8);
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-header h1{
-color:#c0c0c0;
+.logo {
+  color: #c5c8ce;
+  font-size: 21px;
+  font-weight: 900;
 }
 
-.section{
-background:#151515;
-border:1px solid #333;
-border-radius:14px;
-padding:20px;
-margin:18px 0;
+header a {
+  color: white;
+  text-decoration: none;
+  border: 1px solid #777;
+  padding: 9px 15px;
+  border-radius: 8px;
 }
 
-.section h3{
-color:#c0c0c0;
-margin-top:0;
+.container {
+  width: min(850px, 92%);
+  margin: 35px auto;
 }
 
-label{
-display:block;
-margin:15px 0 8px;
-color:#ccc;
+.subtitle {
+  color: #aaa;
+  margin: 10px 0 25px;
 }
 
-input,select{
-width:100%;
-padding:13px;
-background:#080808;
-color:white;
-border:1px solid #555;
-border-radius:8px;
+.panel {
+  background: rgba(18,20,27,.94);
+  border: 1px solid #444;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
 }
 
-button{
-background:linear-gradient(135deg,#fff,#bbb,#777);
-color:#080808;
-border:1px solid white;
-padding:13px 22px;
-border-radius:9px;
-font-weight:bold;
-cursor:pointer;
-margin-top:15px;
+.panel h2 {
+  font-size: 19px;
+  color: #c5c8ce;
+  margin-bottom: 20px;
 }
 
-button:hover{
-filter:brightness(1.15);
+.field {
+  margin-bottom: 17px;
 }
 
-.status{
-color:#aaa;
-margin-top:15px;
-font-size:13px;
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ddd;
 }
 
-.footer{
-text-align:center;
-color:#666;
-margin-top:30px;
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #444;
+  background: #101116;
+  color: white;
+  border-radius: 8px;
+  outline: none;
 }
+
+input:focus, select:focus {
+  border-color: #c5c8ce;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.check input {
+  width: auto;
+}
+
+button {
+  padding: 12px 20px;
+  background: #c5c8ce;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #292b32;
+  color: white;
+  border: 1px solid #555;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.message {
+  color: #79db91;
+  margin-top: 15px;
+  display: none;
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  padding: 25px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
 <header>
-<h1>ALFR3ON</h1>
-<h2>إعدادات الحساب</h2>
-<p>تحكم في إعدادات منصتك</p>
+  <div class="logo">ALFR3ON WEB BUILDER</div>
+  <a href="index.html">الرئيسية</a>
 </header>
 
-<div class="section">
-<h3>الملف الشخصي</h3>
+<main class="container">
 
-<label>اسم المستخدم</label>
-<input id="username" placeholder="اكتب اسم المستخدم">
+  <h1>إعدادات المنصة</h1>
+  <p class="subtitle">
+    تحكم في تفضيلات حسابك وطريقة استخدام المنصة.
+  </p>
 
-<label>البريد الإلكتروني</label>
-<input id="email" type="email" placeholder="البريد الإلكتروني">
-</div>
+  <section class="panel">
+    <h2>البيانات الشخصية</h2>
 
-<div class="section">
-<h3>إعدادات اللغة</h3>
+    <div class="field">
+      <label for="userName">الاسم</label>
+      <input id="userName" type="text" placeholder="اكتب اسمك">
+    </div>
 
-<label>لغة المنصة</label>
-<select id="language">
-<option value="ar">العربية</option>
-<option value="en">English</option>
-<option value="de">Deutsch</option>
-</select>
-</div>
+    <div class="field">
+      <label for="userEmail">البريد الإلكتروني</label>
+      <input id="userEmail" type="email" placeholder="example@email.com">
+    </div>
+  </section>
 
-<div class="section">
-<h3>العلامة المائية</h3>
+  <section class="panel">
+    <h2>التفضيلات العامة</h2>
 
-<label>اسم العلامة المائية</label>
-<input id="watermark" value="ALFR3ON DEZAINER">
+    <div class="field">
+      <label for="language">لغة المنصة</label>
+      <select id="language">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </div>
 
-<p class="status">
-إعداد تجريبي؛ لا تتم إضافته تلقائيًا إلى المواقع المنشأة.
-</p>
-</div>
+    <div class="check">
+      <input type="checkbox" id="notifications">
+      <label for="notifications">تفعيل تفضيل الإشعارات</label>
+    </div>
 
-<div class="section">
-<h3>المظهر</h3>
+    <div class="check">
+      <input type="checkbox" id="sound">
+      <label for="sound">تفعيل تفضيل الأصوات</label>
+    </div>
+  </section>
 
-<label>لون الأزرار</label>
-<select id="buttonColor">
-<option value="silver">فضي</option>
-<option value="red">أحمر</option>
-</select>
-</div>
+  <section class="panel">
+    <h2>إعدادات المظهر</h2>
 
-<button onclick="saveSettings()">حفظ الإعدادات</button>
+    <div class="field">
+      <label for="themeMode">نمط العرض</label>
+      <select id="themeMode">
+        <option value="dark">داكن</option>
+        <option value="light">فاتح</option>
+      </select>
+    </div>
 
-<p class="status" id="status"></p>
+    <p style="color:#999;font-size:13px;line-height:1.8">
+      إعداد النمط هنا تفضيل محفوظ فقط، وسيتم ربطه بنظام المظهر الموحد لاحقًا.
+    </p>
+  </section>
 
-<div class="footer">
-ALFR3ON DEZAINER © 2026
-</div>
+  <section class="panel">
+    <h2>إدارة الإعدادات</h2>
 
-</div>
+    <div class="actions">
+      <button onclick="saveSettings()">حفظ الإعدادات</button>
+      <button class="secondary" onclick="resetSettings()">استعادة الافتراضي</button>
+    </div>
+
+    <p class="message" id="message"></p>
+  </section>
+
+</main>
+
+<footer>
+  ALFR3ON DEZAINER © 2026
+</footer>
 
 <script>
-function saveSettings(){
+const KEY = "alfr3on_user_settings";
 
-const settings={
-username:document.getElementById("username").value,
-email:document.getElementById("email").value,
-language:document.getElementById("language").value,
-watermark:document.getElementById("watermark").value,
-buttonColor:document.getElementById("buttonColor").value
+const defaults = {
+  name: "",
+  email: "",
+  language: "ar",
+  notifications: true,
+  sound: false,
+  themeMode: "dark"
 };
 
-localStorage.setItem(
-"alfr3on_settings",
-JSON.stringify(settings)
-);
+function getSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY));
 
-document.getElementById("status").textContent=
-"تم حفظ الإعدادات محليًا على هذا الجهاز.";
+    if (!saved || typeof saved !== "object") {
+      return {...defaults};
+    }
+
+    return {...defaults, ...saved};
+  } catch {
+    return {...defaults};
+  }
 }
 
-window.onload=function(){
+function loadSettings() {
+  const settings = getSettings();
 
-const saved=localStorage.getItem("alfr3on_settings");
-
-if(saved){
-
-const s=JSON.parse(saved);
-
-document.getElementById("username").value=s.username||"";
-document.getElementById("email").value=s.email||"";
-document.getElementById("language").value=s.language||"ar";
-document.getElementById("watermark").value=s.watermark||"ALFR3ON DEZAINER";
-document.getElementById("buttonColor").value=s.buttonColor||"silver";
-
+  document.getElementById("userName").value = settings.name;
+  document.getElementById("userEmail").value = settings.email;
+  document.getElementById("language").value = settings.language;
+  document.getElementById("notifications").checked = settings.notifications;
+  document.getElementById("sound").checked = settings.sound;
+  document.getElementById("themeMode").value = settings.themeMode;
 }
-};
+
+function saveSettings() {
+  const settings = {
+    name: document.getElementById("userName").value.trim(),
+    email: document.getElementById("userEmail").value.trim(),
+    language: document.getElementById("language").value,
+    notifications: document.getElementById("notifications").checked,
+    sound: document.getElementById("sound").checked,
+    themeMode: document.getElementById("themeMode").value
+  };
+
+  if (settings.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(settings.email)) {
+    showMessage("من فضلك اكتب بريدًا إلكترونيًا صحيحًا.", false);
+    return;
+  }
+
+  localStorage.setItem(KEY, JSON.stringify(settings));
+  showMessage("تم حفظ الإعدادات على هذا الجهاز.", true);
+}
+
+function resetSettings() {
+  localStorage.setItem(KEY, JSON.stringify(defaults));
+  loadSettings();
+  showMessage("تمت استعادة الإعدادات الافتراضية.", true);
+}
+
+function showMessage(text, success) {
+  const message = document.getElementById("message");
+  message.textContent = text;
+  message.style.color = success ? "#79db91" : "#ff7777";
+  message.style.display = "block";
+}
+
+loadSettings();
 </script>
 
 </body>
